@@ -30,6 +30,21 @@
                     </div>
                 <?php endif; ?>
                     <form action="<?= base_url('form_peminjaman_ruang/simpan') ?>" method="post" enctype="multipart/form-data">
+                    
+                    <div class="mb-3">
+                            <label for="username" class="form-label">Nama:</label>
+                            <input type="text" name="nama" value="<?= session()->get('username') ?>" class="form-control mt-3" readonly class="form-control">
+                        </div>
+         
+                    <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="text" name="email" value="<?= session()->get('email') ?>" class="form-control mt-3" readonly class="form-control">
+                        </div>
+                    <div class="mb-3">
+                            <label for="nim" class="form-label">NIM/NIP:</label>
+                            <input type="text" name="nim" value="<?= session()->get('NIM') ?>" class="form-control mt-3" readonly class="form-control">
+                        </div>
+
                     <div class="mb-3">
                             <label for="ruang" class="form-label">Pilih Ruang</label>
                             <select class="form-control" name="ruang" id="ruang" onchange="getKlasifikasi()" required>
@@ -60,10 +75,7 @@
                             <label for="" class="form-label">Waktu Selesai:</label>
                             <input type="time" name="waktu_selesai" id="waktu_selesai" class="form-control mt-3">
                         </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Nama:</label>
-                            <input type="text" name="nama" class="form-control mt-3" placeholder="Enter Here" required>
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="" class="form-label">NIM/NIP:</label>
                             <input type="text" name="nim" class="form-control mt-3" placeholder="Enter here" required>
@@ -123,7 +135,25 @@
             </div>
         </div>
     </section>
+    <script>
+    function getKlasifikasi() {
+        var ruang = document.getElementById("ruang").value;
 
+        if (ruang) {
+            fetch("<?= base_url('get_klasifikasi') ?>/" + encodeURIComponent(ruang))
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("klasifikasi").value = data.klasifikasi || '';
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("klasifikasi").value = '';
+                });
+        } else {
+            document.getElementById("klasifikasi").value = '';
+        }
+    }
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

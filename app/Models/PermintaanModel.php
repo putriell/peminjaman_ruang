@@ -9,7 +9,7 @@ class PermintaanModel extends Model
     protected $table = 'permintaan';
     protected $primaryKey = 'id';
     protected $returnType = 'array';
-    protected $allowedFields = ['id','nama', 'nim', 'organisasi', 'penanggungjawab', 'email', 'nohp', 'ruang', 'tanggal', 'waktu_mulai', 'waktu_selesai', 'fasilitas', 'keperluan', 'lampiran', 'status', 'klasifikasi'];
+    protected $allowedFields = ['id', 'id_user', 'nama', 'nim', 'organisasi', 'penanggungjawab', 'email', 'nohp', 'ruang', 'tanggal', 'waktu_mulai', 'waktu_selesai', 'fasilitas', 'keperluan', 'lampiran', 'status', 'klasifikasi'];
     
 
     public function cekJadwal($table, $ruang, $tanggal, $waktu_mulai, $waktu_selesai)

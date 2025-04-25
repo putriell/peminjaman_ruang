@@ -28,7 +28,7 @@
     
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Pengelolaan</b> Aset</a>
+    <a href="../../index2.html"><b>Peminjaman</b> Ruang</a>
   </div>
 
   <?php if (session()->getFlashdata('error')): ?>

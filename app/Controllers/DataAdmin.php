@@ -189,7 +189,7 @@ class DataAdmin extends BaseController
         $model = new RuangDisetujui();
         $model->update($id, $data);
 
-        return redirect()->back()->with('success', 'Jadwal berhasil dipindahkan.');
+        return redirect()->to('ruang_disetujui')->with('success', 'Jadwal berhasil dipindahkan.');
     }
 
     public function hapus() {

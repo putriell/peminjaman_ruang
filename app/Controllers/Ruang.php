@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\RuangModel;
 use App\Models\PermintaanModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 
 class Ruang extends Controller
@@ -22,26 +23,40 @@ class Ruang extends Controller
         return view('form_peminjaman_ruang', $data); // Ambil data dari
     }
 
-    public function getKlasifikasi(){
-        $namaRuang = $this->request->getPost('nama_ruang');
-        $model = new RuangModel();
-        $ruang = $model->where('nama_ruang', $namaRuang)->first();
-        return $this->response->setJSON($ruang['klasifikasi']);
+    public function getKlasifikasi($nama_ruang)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('ruang');
+        $ruang = $builder->where('nama_ruang', urldecode($nama_ruang))->get()->getRow();
+
+        if ($ruang) {
+            return $this->response->setJSON(['klasifikasi' => $ruang->klasifikasi]);
+        } else {
+            return $this->response->setJSON(['klasifikasi' => '']);
+        }
     }
+
 
     public function simpan()
     {
         
         $ruangModel = new RuangModel();
         $permintaanModel = new PermintaanModel();
-    
-        $pesan = ""; // Variabel untuk menyimpan pesan
-    
+        $userModel = new UserModel();
         
-            // Ambil data dari form
+        $userId = session()->get('id_user');
+        $user = $userModel->find($userId);
+        // dd($user);
+        if (!$user) {
+            return redirect()->back()->with('error', 'User tidak ditemukan.');
+        }
+        $pesan = ""; 
             $data = [
-                'nama' => $this->request->getPost('nama'),
-                'nim' => $this->request->getPost('nim'),
+                'id_user' => $user['id'],
+                'username' => $user['username'],  
+                'nim' => $user['NIM'],
+                'email' => $user['email'],
+                
                 'organisasi' => $this->request->getPost('organisasi'),
                 'penanggungjawab' => $this->request->getPost('penanggungjawab'),
                 'email' => $this->request->getPost('email'),
@@ -54,6 +69,7 @@ class Ruang extends Controller
                 'keperluan' => $this->request->getPost('keperluan'),
                 'klasifikasi' => $this->request->getPost('klasifikasi'),
             ];
+
     
 
             // Cek ketersediaan ruang
@@ -96,9 +112,6 @@ class Ruang extends Controller
                 return view('form_peminjaman_ruang', ['pesan' => $pesan, 'ruang' => $ruang]);
             }
             
-        
-       
-        // Ambil daftar ruang dari database
        
        }
     
