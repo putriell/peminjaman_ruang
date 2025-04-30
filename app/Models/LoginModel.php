@@ -8,7 +8,7 @@ class LoginModel extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['username', 'email', 'NIM', 'password'];
+    protected $allowedFields = ['id','username', 'email', 'NIM', 'password'];
 
     public function getUser($username){
         return $this->where('username', $username)->first();

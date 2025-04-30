@@ -7,7 +7,7 @@
     <title>Beranda</title>
     <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('adminLTE/dist/css/custom/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('adminLTE/dist/css/custom/styles.css') ?>">
 
     
 </head>

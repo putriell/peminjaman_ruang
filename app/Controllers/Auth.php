@@ -45,13 +45,15 @@ class Auth extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $user = $model->where('username', $username) -> first();
+        // $user = $model->where('username', $username) -> first();
+        
 
         $user = $model->getUser($username);
+        // dd($user);
 
         if ($user && password_verify($password, $user['password'])) {
             session()->set([
-                'user_id' => $user['id'],
+                'id_user' => $user['id'],
                 'username' => $user['username'], 
                 'email' => $user['email'],
                 'NIM' => $user['NIM'],
@@ -59,7 +61,7 @@ class Auth extends BaseController
                 'logged_in' => true
             ]);
             if ($user['role'] === 'admin' || $user['role'] === 'superAdmin') {
-                return redirect()->to('dashboard_admin'); 
+                return redirect()->to('/dashboard_admin'); 
             } else {
                 return redirect()->to('/'); 
             }
@@ -76,7 +78,7 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('login')->with('success', 'Berhasil logout.');
+        return redirect()->to('/login')->with('success', 'Berhasil logout.');
     }
     
         

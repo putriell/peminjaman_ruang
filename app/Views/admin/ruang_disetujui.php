@@ -147,6 +147,7 @@
                             <a href="<?= base_url('admin/form_pindah_jadwal/' . esc($row['id'])) ?>" class="btn btn-success">
                                 Pindah Jadwal
                             </a>
+                            </form>
 
                             
                             
@@ -195,6 +196,8 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    </div>
                     </div>
                   <?php endforeach; ?>
                   <?php endif; ?>

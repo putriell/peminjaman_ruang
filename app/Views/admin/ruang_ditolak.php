@@ -111,9 +111,36 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?= $row['id'] ?>"> Detail</button>
                     </td>
                   </tr>
+                  </tbody>
+                  <div class="modal fade" id="myModal<?= $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="myModalLabel">Detail Data</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        <input type="hidden" name="id" value="<?= $row['id']; ?>">
+
+                          <p>Nama: <?= esc($row['nama']) ?></p>
+                          <p>NIM/NIP: <?= esc($row['nim']) ?></p>
+                          <p>Organisasi: <?= esc($row['organisasi']) ?></p>
+                          <p>Penanggung Jawab: <?= esc($row['penanggungjawab']) ?></p>
+                          <p>Email: <?= esc($row['email']) ?></p>
+                          <p>NO.HP: <?= esc($row['nohp']) ?></p>
+                          <p>Ruang: <?= esc($row['ruang']) ?></p>
+                          <p>Tanggal: <?= esc($row['tanggal']) ?></p>
+                          <p>Waktu: <?= esc($row['waktu_mulai']) ?> - <?= esc($row['waktu_selesai']) ?> WIB</p>
+                          <p>Fasilitas: <?= esc($row['fasilitas']) ?></p>
+                          <p>Keperluan: <?= esc($row['keperluan']) ?></p>
+                          
+                    </div>
+                    </div>
                   <?php endforeach; ?>
                   <?php endif; ?>
-                  </tbody>
+                  
           </table> 
           <div class="row">
               <div class="col-12">

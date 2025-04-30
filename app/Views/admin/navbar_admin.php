@@ -146,10 +146,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('data_aset') ?>" class="nav-link <?= (uri_string() =='data_aset' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
+            <a href="<?=base_url('event') ?>" class="nav-link <?= (uri_string() =='event' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-calendar-week"></i>
               <p>
-                Acara
+                Event
               </p>
             </a>
           </li>

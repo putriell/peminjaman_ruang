@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
 </head>
 
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -30,19 +31,22 @@
                     </div>
                 <?php endif; ?>
                     <form action="<?= base_url('form_peminjaman_ruang/simpan') ?>" method="post" enctype="multipart/form-data">
-                    
                     <div class="mb-3">
-                            <label for="username" class="form-label">Nama:</label>
-                            <input type="text" name="nama" value="<?= session()->get('username') ?>" class="form-control mt-3" readonly class="form-control">
+                        <input type="hidden" name="id_user" value="<?= session()->get('id_user') ?>">
+                    </div>
+
+                    <div class="mb-3">
+                            <label for="nama" class="form-label">Nama:</label>
+                            <input type="text"  value="<?= session()->get('username') ?>" class="form-control mt-3" readonly class="form-control">
                         </div>
          
                     <div class="mb-3">
                             <label for="email" class="form-label">Email:</label>
-                            <input type="text" name="email" value="<?= session()->get('email') ?>" class="form-control mt-3" readonly class="form-control">
+                            <input type="text" value="<?= session()->get('email') ?>" class="form-control mt-3" readonly class="form-control">
                         </div>
                     <div class="mb-3">
                             <label for="nim" class="form-label">NIM/NIP:</label>
-                            <input type="text" name="nim" value="<?= session()->get('NIM') ?>" class="form-control mt-3" readonly class="form-control">
+                            <input type="text" value="<?= session()->get('NIM') ?>" class="form-control mt-3" readonly class="form-control">
                         </div>
 
                     <div class="mb-3">
@@ -75,11 +79,7 @@
                             <label for="" class="form-label">Waktu Selesai:</label>
                             <input type="time" name="waktu_selesai" id="waktu_selesai" class="form-control mt-3">
                         </div>
-                        
-                        <div class="mb-3">
-                            <label for="" class="form-label">NIM/NIP:</label>
-                            <input type="text" name="nim" class="form-control mt-3" placeholder="Enter here" required>
-                        </div>
+
                         <div class="mb-3">
                             <label for="" class="form-label">Organisasi/Unit Kerja:</label>
                             <input type="text" name="organisasi" class="form-control mt-3" placeholder="Enter here"
@@ -89,14 +89,6 @@
                             <label for="" class="form-label">Penanggung Jawab/PIC:</label>
                             <input type="text" name="penanggungjawab" class="form-control mt-3" placeholder="Enter here"
                                 required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Email:</label>
-                            <input type="email" name="email" class="form-control mt-3"
-                                placeholder="@mail.ugm.ac.id / @ugm.ac.id / @gmail.com / @gmail.co.id" required>
-                            <p><b>PASTIKAN DOMAIN EMAIL ANDA BENAR!
-                                    *Email UGM Mahasiswa (example@mail.ugm.ac.id)
-                                </b></p>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">NO.HP:</label>
@@ -129,8 +121,10 @@
                             <button type="submit" class="btn btn-primary" name="submit"
                                 value=<?php echo date("h:i:sa"); ?>>Submit</button>
                         </div>
-                        
+
+
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -154,6 +148,9 @@
         }
     }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

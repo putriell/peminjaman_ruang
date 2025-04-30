@@ -8,7 +8,7 @@ class RuangDitolak extends Model
 {
     protected $table = 'ditolak';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nama', 'organisasi', 'nim', 'penanggungjawab', 'email', 'nohp', 'ruang', 'tanggal', 'waktu_mulai', 'waktu_selesai', 'fasilitas', 'keperluan', 'lampiran', 'klasifikasi', 'alasan_penolakan'];
+    protected $allowedFields = ['id','id_user','nama', 'organisasi', 'nim', 'penanggungjawab', 'email', 'nohp', 'ruang', 'tanggal', 'waktu_mulai', 'waktu_selesai', 'fasilitas', 'keperluan', 'lampiran', 'klasifikasi', 'alasan_penolakan'];
 
     public function getPaginatedData($perPage = 5)
     {

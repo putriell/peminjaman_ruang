@@ -46,20 +46,17 @@ class Ruang extends Controller
         
         $userId = session()->get('id_user');
         $user = $userModel->find($userId);
-        // dd($user);
         if (!$user) {
             return redirect()->back()->with('error', 'User tidak ditemukan.');
         }
-        $pesan = ""; 
+        
             $data = [
-                'id_user' => $user['id'],
-                'username' => $user['username'],  
-                'nim' => $user['NIM'],
-                'email' => $user['email'],
-                
+                'id_user' => $user['id'],               
+                'nama' => $user['username'],             
+                'nim' => $user['NIM'],                   
+                'email' => $user['email'], 
                 'organisasi' => $this->request->getPost('organisasi'),
                 'penanggungjawab' => $this->request->getPost('penanggungjawab'),
-                'email' => $this->request->getPost('email'),
                 'nohp' => $this->request->getPost('nohp'),
                 'ruang' => $this->request->getPost('ruang'),
                 'tanggal' => $this->request->getPost('tanggal'),
@@ -69,10 +66,8 @@ class Ruang extends Controller
                 'keperluan' => $this->request->getPost('keperluan'),
                 'klasifikasi' => $this->request->getPost('klasifikasi'),
             ];
+            
 
-    
-
-            // Cek ketersediaan ruang
             $ruang = $data['ruang'];
             $tanggal = $data['tanggal'];
             $waktu_mulai = $data['waktu_mulai'];

@@ -44,7 +44,7 @@ class DataAdmin extends BaseController
         $model = new RuangDisetujui();
         $perPage = 5;
         $data = [
-            'disetujui'   => $model->getPaginatedData($perPage), // Pass keyword to the model
+            'disetujui'   => $model->getPaginatedData($perPage),
             'pager'       => $model->pager,
             'page'        =>   $data['page'] = $this->request->getVar('page') ?? 1,
             'totalPages' => $model->pager->getPageCount(),
@@ -93,6 +93,7 @@ class DataAdmin extends BaseController
             $ruangDisetujui = new RuangDisetujui();
             $ruangDisetujui->insert([
                 'id' => $data['id'],
+                'id_user' => $data['id_user'],
                 'nama' => $data['nama'],
                 'nim' => $data['nim'],
                 'organisasi' => $data['organisasi'],
@@ -133,6 +134,7 @@ class DataAdmin extends BaseController
             $ruangDitolak = new RuangDitolak();
             $ruangDitolak->insert([
                 'id' => $data['id'],
+                'id_user' => $data['id_user'],
                 'nama' => $data['nama'],
                 'nim' => $data['nim'],
                 'organisasi' => $data['organisasi'],
@@ -153,7 +155,7 @@ class DataAdmin extends BaseController
             // Hapus dari tabel utama
             $permintaanModel->delete($id);
 
-            return redirect()->to('dashboard_admin')->with('message', 'Data berhasil ditolak.');
+            return redirect()->to('/dashboard_admin')->with('message', 'Data berhasil ditolak.');
         } else {
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
@@ -184,7 +186,6 @@ class DataAdmin extends BaseController
             'waktu_mulai' => $waktu_mulai,
             'waktu_selesai' => $waktu_selesai,
         ];
-
 
         $model = new RuangDisetujui();
         $model->update($id, $data);
