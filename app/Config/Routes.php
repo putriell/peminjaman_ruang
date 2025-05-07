@@ -36,3 +36,5 @@ $routes->get('admin/form_pindah_jadwal/(:num)', 'DataAdmin::formPindahJadwal/$1'
 $routes->post('admin/pindah_jadwal', 'DataAdmin::pindah_jadwal');
 $routes->get('/event', 'Event::index');
 $routes->post('/event/simpan', 'Event::simpan');
+$routes->get('/event/get_klasifikasi/(:any)', 'Event::getKlasifikasi/$1');
+$routes->get('/dashboard_user', 'DataUser::index');

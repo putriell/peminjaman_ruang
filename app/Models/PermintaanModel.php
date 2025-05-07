@@ -30,6 +30,15 @@ class PermintaanModel extends Model
 
     }
 
+    public function getPaginateUser($perPage, $userId)
+    {
+        return $this->where('id_user', $userId)->paginate($perPage);
+    }
+
+
+    
+
+
    
 
 

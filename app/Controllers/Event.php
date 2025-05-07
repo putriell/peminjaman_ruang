@@ -12,20 +12,23 @@ class Event extends BaseController
     public function index()
     {
         $model = new EventModel();
+        $ruangModel = new RuangModel();
+        
         $perPage = 5;
         $data = [
             'event'   => $model->getPaginatedData($perPage),
             'pager'       => $model->pager,
             'page'        =>   $data['page'] = $this->request->getVar('page') ?? 1,
             'totalPages' => $model->pager->getPageCount(),
-
+            'ruang'      => $ruangModel->findAll(), 
         ];
+        
         return view('admin/event', $data);
     }
 
-
     public function simpan()
     {
+        // dd($this->request->getPost());
         $ruangModel = new RuangModel();
         $permintaanModel = new PermintaanModel();
             $data = [           
@@ -58,6 +61,19 @@ class Event extends BaseController
             }
             
        
+       }
+
+       public function getKlasifikasi($nama_ruang)
+       {
+           $db = \Config\Database::connect();
+           $builder = $db->table('ruang');
+           $ruang = $builder->where('nama_ruang', urldecode($nama_ruang))->get()->getRow();
+   
+           if ($ruang) {
+               return $this->response->setJSON(['klasifikasi' => $ruang->klasifikasi]);
+           } else {
+               return $this->response->setJSON(['klasifikasi' => '']);
+           }
        }
     
 }

@@ -54,6 +54,7 @@ class Auth extends BaseController
         if ($user && password_verify($password, $user['password'])) {
             session()->set([
                 'id_user' => $user['id'],
+                
                 'username' => $user['username'], 
                 'email' => $user['email'],
                 'NIM' => $user['NIM'],
@@ -63,7 +64,7 @@ class Auth extends BaseController
             if ($user['role'] === 'admin' || $user['role'] === 'superAdmin') {
                 return redirect()->to('/dashboard_admin'); 
             } else {
-                return redirect()->to('/'); 
+                return redirect()->to('/dashboard_user'); 
             }
         } 
         else {

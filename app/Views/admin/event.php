@@ -129,11 +129,12 @@
           </table>  
                   
     </div>  
-    <div class="card-footer">
+
     <div class="row">
               <div class="col-12">
                   <nav aria-label="Page navigation">
                   <?php 
+                      $page = $page ?? 1;
                       $perPageLinks = 3; // Menampilkan 3 angka per tampilan pagination
                       $startPage = (ceil($page / $perPageLinks) - 1) * $perPageLinks + 1;
                       $endPage = min($startPage + $perPageLinks - 1, $totalPages);
@@ -162,7 +163,7 @@
                   </nav>
               </div>
           </div>
-      </div>
+
 
 
 
@@ -177,8 +178,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="<?= base_url('/event/simpan') ?>" method="post" enctype="multipart/form-data">
-                    <div class="mb-3">
+          <form action="<?= base_url('/event/simpan') ?>" method="post" enctype="multipart/form-data" class=" p-4">
+                    <div class="mb-3 ">
                             <label for="ruang" class="form-label">Pilih Ruang</label>
                             <select class="form-control" name="ruang" id="ruang" onchange="getKlasifikasi()" required>
                                 <option value="">-Pilih ruang-</option>
@@ -256,30 +257,6 @@
     </div>
    
 
-<div id="confirm-dialog" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h2 class="h2">Are you sure?</h2>
-        <p>The data will be deleted and lost forever</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" role="button" id="delete-button" class="btn btn-danger">Delete</a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  function confirmToDelete(el){
-    const href = el.getAttribute('data-href');
-      if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-          window.location.href = href;
-      }
-
-  } 
-</script>
 
  
   
