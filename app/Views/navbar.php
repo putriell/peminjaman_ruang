@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?= base_url('adminLTE/dist/css/custom/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/fontawesome-free/css/all.min.css') ?>">
-    
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #004266;">
@@ -122,3 +122,6 @@
         </div>
       </div>
     </div>
+
+    </body>
+    </html>
