@@ -28,9 +28,8 @@ class Event extends BaseController
 
     public function simpan()
     {
-        // dd($this->request->getPost());
         $ruangModel = new RuangModel();
-        $permintaanModel = new PermintaanModel();
+        $model = new EventModel();
             $data = [           
                 'nama' => $this->request->getPost('nama'),            
                 'nim' => $this->request->getPost('nim'),                  
@@ -48,18 +47,31 @@ class Event extends BaseController
             ];
 
             $ruang = $ruangModel->findAll();
-        
-            
-            if ($permintaanModel->insert($data)) {
-                $pesan = "Pengajuan anda sudah dikirim!";
-                return view('admin/event', ['pesan' => $pesan, 'ruang' => $ruang]);
-    
+            $page = $this->request->getGet('page') ?? 1;
+            $perPage = 10;
+
+            $totalRows = $model->countAllResults();
+            $totalPages = ceil($totalRows / $perPage);
+
+            $event = $model->orderBy('tanggal', 'desc')
+                                    ->paginate($perPage, 'default', $page);
                 
+                    
+            if ($model->insert($data)) {
+                $pesan = "Pengajuan anda sudah dikirim!";
             } else {
-                $pesan = "Terjadi kesalahan saat menyimpan data:" . implode(', ', $permintaanModel->errors());
-                return view('admin/event', ['pesan' => $pesan, 'ruang' => $ruang]);
+                $pesan = "Terjadi kesalahan saat menyimpan data:" . implode(', ', $model->errors());
             }
-            
+
+            return view('admin/event', [
+                'pesan' => $pesan,
+                'ruang' => $ruang,
+                'event' => $event,
+                'page' => $page,
+                'totalPages' => $totalPages,
+                'success' => session()->getFlashdata('success'),
+                 'error' => session()->getFlashdata('error'),
+            ]);
        
        }
 

@@ -38,3 +38,5 @@ $routes->get('/event', 'Event::index');
 $routes->post('/event/simpan', 'Event::simpan');
 $routes->get('/event/get_klasifikasi/(:any)', 'Event::getKlasifikasi/$1');
 $routes->get('/dashboard_user', 'DataUser::index');
+
+$routes->get('/jadwal_ruang_user', 'DataUser::jadwalHariIni');

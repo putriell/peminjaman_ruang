@@ -252,11 +252,19 @@
 
 
                     </form>
+
         </div>
       </div>
     </div>
-   
+      <?php if (session('success')): ?>
+      <div class="alert alert-success"><?= session('success') ?></div>
+      <?php endif; ?>
 
+      <?php if (session('error')): ?>
+      <div class="alert alert-danger"><?= session('error') ?></div>
+      <?php endif; ?>    
+   
+                        
 
  
   

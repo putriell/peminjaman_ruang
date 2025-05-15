@@ -45,11 +45,7 @@ class Auth extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        // $user = $model->where('username', $username) -> first();
-        
-
         $user = $model->getUser($username);
-        // dd($user);
 
         if ($user && password_verify($password, $user['password'])) {
             session()->set([
@@ -64,7 +60,7 @@ class Auth extends BaseController
             if ($user['role'] === 'admin' || $user['role'] === 'superAdmin') {
                 return redirect()->to('/dashboard_admin'); 
             } else {
-                return redirect()->to('/dashboard_user'); 
+                return redirect()->to('/'); 
             }
         } 
         else {

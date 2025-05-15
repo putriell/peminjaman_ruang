@@ -92,8 +92,8 @@
                     <td><?= esc($row['ruang']) ?></td>
                     <td><?= esc($row['tanggal']) ?></td>
                     <td><?= esc($row['waktu_mulai']) ?> - <?= esc($row['waktu_selesai']) ?> WIB </td>
-                    <td> <a href="<?= base_url('uploads/' . $row['lampiran']) ?>" target="_blank"> <?= esc($row['lampiran']) ?></a>
-                    </td>
+                    <td class="text-center"><?= esc($row['status']) ?></td>
+
                     <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?= $row['id'] ?>"> Detail</button>
                     </td>
