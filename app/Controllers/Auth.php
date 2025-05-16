@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\LoginModel;
+use App\Models\UserModel;
 
 class Auth extends BaseController
 {
@@ -16,10 +16,26 @@ class Auth extends BaseController
         
     }
 
-    public function auth(){
-        $validation = \Config\Services::validation();
+    public function register(){
+        return view('register');
+    }
 
-        // Aturan validasi
+    Public function store() {
+        $model = new UserModel();
+        $model->insert([
+            'username' => $this->request->getPost('username'),
+            'email'    => $this->request->getPost('email'),
+            'NIM'      => $this->request->getPost('NIM'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'role'     => "menunggu" 
+        ]);
+
+        return redirect()->to('/login')->with('success', 'Pendaftaran berhasil. Silakan login.');
+    }
+    
+
+    public function login(){
+
         $rules = [
             'username' => [
                 'label' => 'Username',
@@ -41,13 +57,19 @@ class Auth extends BaseController
              return redirect()->back()->withInput()->with('validation', $this->validator);
         }
 
-        $model = new LoginModel();
+
+        $model = new UserModel();
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
         $user = $model->getUser($username);
 
         if ($user && password_verify($password, $user['password'])) {
+            
+            if ($user['role'] === 'menunggu') {
+                session()->setFlashdata('error', 'Akun Anda belum aktif. Silakan tunggu 24 jam atau hubungi admin.');
+                return redirect()->to('login');
+            }
             session()->set([
                 'id_user' => $user['id'],
                 
