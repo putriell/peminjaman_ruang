@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\JadwalKuliah;
+use App\Models\KendaraanDisetujui;
+use App\Models\KendaraanDitolak;
 use App\Models\KendaraanModel;
 use App\Models\PermintaanKendaraan;
 use App\Models\PermintaanModel;
@@ -55,20 +57,7 @@ class DataAdmin extends BaseController
         return view('admin/ruang_disetujui', $data);
         
     } 
-    public function Disetujui_kendaraan()
-    {
-        $model = new RuangDisetujui();
-        $perPage = 5;
-        $data = [
-            'disetujui'   => $model->getPaginatedData($perPage),
-            'pager'       => $model->pager,
-            'page'        =>   $data['page'] = $this->request->getVar('page') ?? 1,
-            'totalPages' => $model->pager->getPageCount(),
 
-        ];
-
-        return view('admin/ruang_disetujui', $data);
-    } 
     public function Ditolak()
     {
         $model = new RuangDitolak();
@@ -81,6 +70,34 @@ class DataAdmin extends BaseController
 
         ];
         return view('admin/ruang_ditolak', $data);
+    }
+        public function Disetujui_kendaraan()
+    {
+        $model = new KendaraanDisetujui();
+        $perPage = 5;
+        $data = [
+            'disetujui'   => $model->getPaginatedData($perPage),
+            'pager'       => $model->pager,
+            'page'        =>   $data['page'] = $this->request->getVar('page') ?? 1,
+            'totalPages' => $model->pager->getPageCount(),
+
+        ];
+
+        return view('admin/kendaraan/disetujui', $data);
+    } 
+
+    public function Ditolak_kendaraan()
+    {
+        $model = new KendaraanDitolak();
+        $perPage = 5;
+        $data = [
+            'ditolak'   => $model->getPaginatedData($perPage), // Pass keyword to the model
+            'pager'       => $model->pager,
+            'page'        =>   $data['page'] = $this->request->getVar('page') ?? 1,
+            'totalPages' => $model->pager->getPageCount(),
+
+        ];
+        return view('admin/kendaraan/ditolak', $data);
     }
 
     public function jadwalHariIni()
