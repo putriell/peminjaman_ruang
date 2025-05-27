@@ -12,7 +12,6 @@ $routes = Services::routes();
 $routes->get('/', 'Home::index');
 $routes->get('/informasi_ruang', 'Ruang::index');
 $routes->get('/jadwal_ruang', 'Jadwal::ruang');
-$routes->get('informasi_kendaraan', 'Kendaraan::index');
 $routes->get('login', 'Auth::index');
 $routes->get('/logout', 'Auth::logout');
 $routes->post('login/auth', 'Auth::login');
@@ -26,8 +25,10 @@ $routes->post('/user/simpan', 'User::simpan');
 $routes->get('/user', 'User::index');
 $routes->get('/user/hapus/(:num)', 'User::hapus/$1');
 $routes->get('/user/search', 'User::search');
+$routes->get('/aktivasi_user', 'User::aktivasi_akun');
 $routes->get('/user/reset_password/(:num)', 'User::reset_password/$1');
 $routes->post('/user/simpan', 'User::simpan');
+$routes->post('user/ganti_password', 'User::ganti_password');
 $routes->get('/form_peminjaman_ruang', 'Ruang::formPeminjaman');
 $routes->post('/form_peminjaman_ruang/simpan', 'Ruang::simpan');
 $routes->get('get_klasifikasi/(:any)', 'Ruang::getKlasifikasi/$1');
@@ -42,3 +43,9 @@ $routes->get('/event/get_klasifikasi/(:any)', 'Event::getKlasifikasi/$1');
 $routes->get('/dashboard_user', 'DataUser::index');
 
 $routes->get('/jadwal_ruang_user', 'DataUser::jadwalHariIni');
+
+//kendaraan
+$routes->get('informasi_kendaraan', 'Kendaraan::index');
+$routes->get('/form_kendaraan', 'Kendaraan::formPeminjaman');
+$routes->post('/form_kendaraan/simpan', 'Kendaraan::simpan');
+$routes->get('/kendaraan_menunggu', 'DataAdmin::menunggu_kendaraan');

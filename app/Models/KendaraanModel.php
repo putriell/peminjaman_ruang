@@ -8,5 +8,5 @@ class KendaraanModel extends Model
 {
     protected $table = 'kendaraan';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['mobil', 'kapasitas', 'status'];
+    protected $allowedFields = ['id','driver','mobil', 'kapasitas', 'status'];
 }

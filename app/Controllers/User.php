@@ -65,7 +65,7 @@ class User extends BaseController
                 $newPassword = password_hash($passwordBaru, PASSWORD_DEFAULT);
                 $model->updatePassword($username, $newPassword);
     
-                return redirect()->to('/dashboard')->with('success', 'Password berhasil diubah.');
+                return redirect()->to('/login')->with('success', 'Password berhasil diubah.');
             } else {
                 // Password lama salah
                 return redirect()->back()->with('error', 'Password lama tidak sesuai.');
@@ -99,6 +99,22 @@ class User extends BaseController
         $data['totalPages'] = $model->pager->getPageCount();
         $data['keyword'] = $keyword;
         return view('admin/kelola_user', $data);
+    }
+
+    public function aktivasi_akun(): string
+    {
+        $model = new UserModel();
+        
+        $perPage = 10;
+
+        $data = [
+            'users'       => $model->getMenungguUsers($perPage),
+            'pager'       => $model->pager,
+            'page'        => $this->request->getVar('page') ?? 1,
+            'totalPages'  => $model->pager->getPageCount(),
+        ];
+
+        return view('admin/aktivasi_user', $data);
     }
 
 

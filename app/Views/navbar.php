@@ -61,7 +61,7 @@
                             Pengajuan
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="informasi_kendaraan">Peminjaman Kendaraan</a></li>
+                            <li><a class="dropdown-item" href="form_kendaraan">Peminjaman Kendaraan</a></li>
                             <li><a class="dropdown-item" href="form_peminjaman_ruang">Peminjaman Ruangan</a></li>
                         </ul>
                     </li>
@@ -70,6 +70,11 @@
                     <?php if (!session()->get('logged_in')): ?> 
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('login') ?>">Login</a>
+                        </li>
+                    <?php endif; ?>
+                    <?php if (session()->get('logged_in')): ?> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('dashboard_user') ?>">Riwayat</a>
                         </li>
                     <?php endif; ?>
 
@@ -82,7 +87,7 @@
                         <i class="far fa-user fa-inverse" style="color:white;"></i> 
                         </a>
                         <div class="dropdown-menu dropdown-menu-righ mr-6" aria-labelledby="userDropdown">
-                            <a class="dropdown-item"  data-toggle="modal" data-target="#ganti_password">Ganti Password</a>
+                            <a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#ganti_password">Ganti Password</a>
                             <a class="dropdown-item" href="logout">Logout</a>
                         </div>
                     </li>
@@ -97,9 +102,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="myModalLabel">Tambah Data</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            
           </div>
           <form id="ganti_password" action="<?= base_url('user/ganti_password') ?>" method="POST">
             <div class="modal-body">

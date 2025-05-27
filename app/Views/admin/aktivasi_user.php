@@ -64,24 +64,7 @@
            </div>
          </div>
            <div class="card">
-             <div class="card-header d-flex justify-content-between align-items-center">
-               <div class="d-flex align-item-center">
-                 <button type="button" class="btn btn-block btn-primary mr-2" data-toggle="modal" data-target="#tambah-data">Tambah</button>
-               </div>
-              
-               <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px; ">
-                 <form action="<?= base_url('user/search') ?>" method="get">
-                     <div class="input-group input-group-lg">
-                         <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
-                             <div class="input-group-append">
-                                 <button type="submit" class="btn btn-lg btn-default">
-                                     <i class="fa fa-search"></i>
-                                 </button>
-                             </div>
-                     </div>
-                   </form>
-                 </div>
-             </div>
+             
              
             <div class="card-body">
                <div class="table-responsive">
@@ -93,8 +76,7 @@
                          <th>Username</th>
                          <th>Email</th>
                          <th>NIM </th>
-                         <th>Role</th>
-                         <th>Reset Password</th>
+                         <th>Status</th>
                          <th>Tindakan</th>
                        </tr>
                        </thead>
@@ -107,14 +89,10 @@
                            <td><?= esc($row['email']) ?></td>
                            <td><?= esc($row['NIM']) ?></td>
                            <td><?= esc($row['role']) ?></td>
-                           <td class="text-center">
-                           <a href="#" data-href="<?= base_url('/user/reset_password/' . $row['id']); ?>" title="Reset Password" onclick="confirmReset(this)">
-                             <i class="fas fa-redo"></i>
-                           </a>
-                           </td>
+                           
                            <td class="text-center" >
                             <a href="#" data-href="<?= base_url('user/hapus/'.$row['id']) ?>" onclick="confirmToDelete(this)">
-                               <i class="fas fa-trash-alt pl-3"></i>
+                               <i class="fas fa-pencil-alt pl-3"></i>
                              </a>
                            </td>
      
@@ -123,6 +101,7 @@
                        </tbody>
                </table>           
          </div>  
+         </div>
          <div class="card-footer">
          <div class="row">
              <div class="col-12">

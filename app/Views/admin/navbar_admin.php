@@ -108,13 +108,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url('dashboard_admin') ?>" class="nav-link <?= (uri_string() =='dashboard_admin' || uri_string() == 'data_aset/search') ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('dashboard_admin') ?>" class="nav-link <?= (uri_string() =='dashboard_admin' ) ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ruang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url('data_aset') ?>" class="nav-link <?= (uri_string() =='data_aset' || uri_string() == 'data_aset/search') ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('kendaraan_menunggu') ?>" class="nav-link <?= (uri_string() =='kendaraan_menunggu') ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kendaraan</p>
                 </a>
@@ -126,8 +126,23 @@
               <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Jadwal Hari ini
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('jadwal_ruang_admin') ?>" class="nav-link <?= (uri_string() =='jadwal_ruang_admin' ) ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ruang</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('kendaraan_menunggu') ?>" class="nav-link <?= (uri_string() =='kendaraan_menunggu') ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kendaraan</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="<?=base_url('ruang_disetujui') ?>" class="nav-link <?= (uri_string() =='ruang_disetujui' || uri_string() == 'data_aset/search' || uri_string() == 'admin/form_pindah_jadwal/(:num)') ? 'active' : '' ?>">
@@ -154,12 +169,27 @@
             </a>
           </li>
           <li class="nav-item">
-          <a href="<?=base_url('user') ?>" class="nav-link <?= (uri_string() =='user' || uri_string() == 'user/search') ? 'active' : '' ?>">
+            <a href="<?=base_url('user') ?>" class="nav-link <?= (uri_string() =='user' || uri_string() == 'user/search') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Pengguna
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('aktivasi_user') ?>" class="nav-link <?= (uri_string() =='aktivasi_user') ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Aktivasi Pengguna</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('user') ?>" class="nav-link <?= (uri_string() =='user' || uri_string() == 'user/search') ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Kelola Pengguna</p>
+                </a>
+              </li>
+            </ul>
           </li>
           </ul>
       </nav>

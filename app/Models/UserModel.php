@@ -39,7 +39,7 @@ class UserModel extends Model
 
     public function getPaginatedData($perPage = 10, $keyword = null)
     {
-        $builder = $this;
+        $builder = $this->whereIn('role', ['admin', 'user']);
 
         if ($keyword) {
             $builder ->groupStart()
@@ -52,5 +52,11 @@ class UserModel extends Model
 
         return $builder->paginate($perPage);
     }
+
+    public function getMenungguUsers($perPage)
+    {
+        return $this->where('role', 'menunggu')->paginate($perPage);
+    }
+
 
 }

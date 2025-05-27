@@ -5,26 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Peminjaman Ruang </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/fontawesome-free/css/all.min.css') ?>">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
-    <!-- iCheck -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
-    <!-- JQVMap -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/jqvmap/jqvmap.min.css') ?>">
-    <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/dist/css/adminlte.min.css?v=3.2.0') ?>">
-    <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
-    <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/daterangepicker/daterangepicker.css') ?>">
-    <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/summernote/summernote-bs4.min.css')?>">
      <style>
-        /* Tambahkan ini ke file CSS kustom Anda */
         
         .table thead {
           background-color: #083D62;
@@ -35,10 +25,10 @@
         }
         
         .small-box {
-          padding-top: 12px; /* Tambahkan padding jika diperlukan */
+          padding-top: 12px; 
         }
         .small-box .inner {
-            text-align: center; /* Memusatkan teks di dalam box */
+            text-align: center;
         }
         .btn-success{
           margin-left: -150px
@@ -63,13 +53,8 @@
         </div>
       </div>
     </div>
-  
-
-    <!-- Main content -->
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-
-              <!-- /.card-header -->
         <div class="card-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead class="text-center">

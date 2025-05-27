@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\JadwalKuliah;
+use App\Models\KendaraanModel;
+use App\Models\PermintaanKendaraan;
 use App\Models\PermintaanModel;
 use App\Models\RuangDisetujui;
 use App\Models\RuangDitolak;
@@ -13,6 +15,7 @@ class DataAdmin extends BaseController
     protected $ruangDisetujui;
     protected $ruangDitolak;
     protected $jadwalKuliah;
+    protected $permintaanKendaraan;
 
     public function __construct()
     {
@@ -20,17 +23,15 @@ class DataAdmin extends BaseController
         $this->ruangDisetujui = new RuangDisetujui();
         $this->ruangDitolak = new RuangDitolak();
         $this->jadwalKuliah = new JadwalKuliah();
+        $this->permintaanKendaraan = new PermintaanKendaraan();
     }
-
+    //ruang
     public function index()
     {
         $model = new PermintaanModel();
         $data['jumlah_permintaan'] = $this->permintaanModel->countAllResults();
-        // $data['permintaan'] = $this->permintaanModel->orderBy('ruang, tanggal, waktu_mulai')->findAll();
-        $perPage = 5; // Jumlah data per halaman
-            
+        $perPage = 5; 
 
-            // Ambil data dengan pagination
             $data = [
                 'permintaan'   => $model->getPaginatedData($perPage), // Pass keyword to the model
                 'pager'       => $model->pager,
@@ -54,6 +55,20 @@ class DataAdmin extends BaseController
         return view('admin/ruang_disetujui', $data);
         
     } 
+    public function Disetujui_kendaraan()
+    {
+        $model = new RuangDisetujui();
+        $perPage = 5;
+        $data = [
+            'disetujui'   => $model->getPaginatedData($perPage),
+            'pager'       => $model->pager,
+            'page'        =>   $data['page'] = $this->request->getVar('page') ?? 1,
+            'totalPages' => $model->pager->getPageCount(),
+
+        ];
+
+        return view('admin/ruang_disetujui', $data);
+    } 
     public function Ditolak()
     {
         $model = new RuangDitolak();
@@ -70,8 +85,6 @@ class DataAdmin extends BaseController
 
     public function jadwalHariIni()
     {
-        
-
         $data = [
             'jumlah_permintaan' => $this->permintaanModel->countAllResults(),
             'hari_ini'          => date('Y-m-d'),
@@ -151,8 +164,6 @@ class DataAdmin extends BaseController
                 'klasifikasi' => $data['klasifikasi'],
                 'alasan_penolakan' => $alasan,
             ]);
-
-            // Hapus dari tabel utama
             $permintaanModel->delete($id);
 
             return redirect()->to('/dashboard_admin')->with('message', 'Data berhasil ditolak.');
@@ -210,5 +221,20 @@ class DataAdmin extends BaseController
     
     }
 
+    //kendaraan
+
+    public function menunggu_kendaraan()
+    {
+        $model = new PermintaanKendaraan();
+        $perPage = 5; 
+
+            $data = [
+                'permintaan'   => $model->getPaginatedData($perPage), 
+                'pager'       => $model->pager,
+                'page'        => $this->request->getVar('page') ?? 1,
+                'totalPages'  => $model->pager->getPageCount(),
+            ];
+        return view('admin/kendaraan/persetujuan', $data);
+    }
 
 }
