@@ -107,11 +107,11 @@
                           <p>Waktu: <?= esc($row['jam_pinjam']) ?> - <?= esc($row['jam_kembali']) ?> WIB</p>
                           <p>Keperluan: <?= esc($row['keperluan']) ?></p>
                           <div class="d-flex justify-content-between align-items-center">
-                          <form action="<?= base_url('/admin/approve') ?>" method="post">
+                          <form action="<?= base_url('/kendaraan/approve') ?>" method="post">
                           <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
                             <button type="submit" class="btn btn-success">Setujui</button>
                           </form>
-                          <form action="<?= base_url('/admin/reject') ?>" method="post">
+                          <form action="<?= base_url('/kendaraan/reject') ?>" method="post">
                             <?= csrf_field() ?>
                             <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
                             

@@ -149,16 +149,47 @@
               <i class="nav-icon fas fa-user-check"></i>
               <p>
                 Disetujui
+                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <!-- /kendaraan_ditolak -->
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('ruang_disetujui') ?>" class="nav-link <?= (uri_string() =='ruang_disetujui' ) ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ruang</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('kendaraan_disetujui') ?>" class="nav-link <?= (uri_string() =='kendaraan_disetujui') ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kendaraan</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="<?=base_url('ruang_ditolak') ?>" class="nav-link <?= (uri_string() =='ruang_ditolak' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-times"></i>
               <p>
-              Ditolak
+                Ditolak
+               <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('ruang_ditolak') ?>" class="nav-link <?= (uri_string() =='ruang_ditolak' ) ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ruang</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('kendaraan_ditolak') ?>" class="nav-link <?= (uri_string() =='kendaraan_ditolak') ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kendaraan</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="<?=base_url('event') ?>" class="nav-link <?= (uri_string() =='event' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">

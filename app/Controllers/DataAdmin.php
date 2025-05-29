@@ -71,7 +71,7 @@ class DataAdmin extends BaseController
         ];
         return view('admin/ruang_ditolak', $data);
     }
-        public function Disetujui_kendaraan()
+    public function Disetujui_kendaraan()
     {
         $model = new KendaraanDisetujui();
         $perPage = 5;
@@ -184,9 +184,79 @@ class DataAdmin extends BaseController
             $permintaanModel->delete($id);
 
             return redirect()->to('/dashboard_admin')->with('message', 'Data berhasil ditolak.');
+            } else {
+                return redirect()->back()->with('error', 'Data tidak ditemukan.');
+            }
+    }
+        public function approve_kendaraan(){
+        $id = $this->request->getPost('id');
+        $permintaanModel = new PermintaanKendaraan(); 
+        $data = $permintaanModel->where('id', $id)->first();
+
+        if ($data) {
+            $kendaraanDisetujui = new KendaraanDisetujui();
+            $kendaraanDisetujui->insert([
+                'id' => $data['id'],
+                'id_user' => $data['id_user'],
+                'nama' => $data['nama'],
+                'no_hp' => $data['no_hp'],
+                'kendaraan' => $data['kendaraan'],
+                'tanggal_pinjam' => $data['tanggal_pinjam'],
+                'tanggal_kembali' => $data['tanggal_kembali'],
+                'jam_pinjam' => $data['jam_pinjam'],
+                'jam_kembali' => $data['jam_kembali'],
+                'status' => $data['status'],
+                'unit_kerja' => $data['unit_kerja'],
+                'nama_pic' => $data['nama_pic'],
+                'keperluan' => $data['keperluan'],
+                'lampiran' => $data['lampiran'],
+                
+            ]);
+
+            // Hapus dari tabel utama
+            $permintaanModel->delete($id);
+
+            return redirect()->to('dashboard_admin')->with('message', 'Data berhasil disetujui.');
         } else {
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
+    }
+    public function reject_kendaraan()
+    {
+        $id = $this->request->getPost('id');
+        // dd($id);
+        $alasan = $this->request->getPost('alasan_penolakan');
+
+        $permintaanModel = new PermintaanKendaraan(); 
+        $data = $permintaanModel->where('id', $id)->first();
+        // dd($data);
+
+
+        if ($data) {
+            $kendaraanDitolak = new KendaraanDitolak();
+            $kendaraanDitolak->insert([
+                'id' => $data['id'],
+                'id_user' => $data['id_user'],
+                'nama' => $data['nama'],
+                'no_hp' => $data['no_hp'],
+                'kendaraan' => $data['kendaraan'],
+                'tanggal_pinjam' => $data['tanggal_pinjam'],
+                'tanggal_kembali' => $data['tanggal_kembali'],
+                'jam_pinjam' => $data['jam_pinjam'],
+                'jam_kembali' => $data['jam_kembali'],
+                'status' => $data['status'],
+                'unit_kerja' => $data['unit_kerja'],
+                'nama_pic' => $data['nama_pic'],
+                'keperluan' => $data['keperluan'],
+                'lampiran' => $data['lampiran'],
+                'alasan_penolakan' => $alasan,
+            ]);
+            $permintaanModel->delete($id);
+
+            return redirect()->to('/dashboard_admin')->with('message', 'Data berhasil ditolak.');
+            } else {
+                return redirect()->back()->with('error', 'Data tidak ditemukan.');
+            }
     }
 
     public function formPindahJadwal($id)
