@@ -236,7 +236,6 @@
               </div>
           </div>          
     </div>  
-
 </script>
     <script src="<?= base_url('adminLTE/plugins/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
