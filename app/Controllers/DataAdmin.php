@@ -162,6 +162,41 @@ class DataAdmin extends BaseController
             }
     }
 
+        public function hapus() {
+        $id = $this->request->getPost('id');
+        $alasan = $this->request->getPost('alasan_penolakan');
+        $modelDisetujui = new RuangDisetujui();
+        $modelDitolak = new RuangDitolak();
+    
+        $data = $modelDisetujui->find($id);
+    
+        if ($data) {
+            $modelDitolak->insert([
+                'id' => $data['id'],
+                'id_user' => $data['id_user'],
+                'nama' => $data['nama'],
+                'nim' => $data['nim'],
+                'organisasi' => $data['organisasi'],
+                'penanggungjawab' => $data['penanggungjawab'],
+                'email' => $data['email'],
+                'nohp' => $data['nohp'],
+                'ruang' => $data['ruang'],
+                'tanggal' => $data['tanggal'],
+                'waktu_mulai' => $data['waktu_mulai'],
+                'waktu_selesai' => $data['waktu_selesai'],
+                'fasilitas' => $data['fasilitas'],
+                'keperluan' => $data['keperluan'],
+                'lampiran' => $data['lampiran'],
+                'klasifikasi' => $data['klasifikasi'],
+                'alasan_penolakan' => $alasan,
+            ]);
+            $modelDisetujui->delete($id);
+        }
+    
+        return redirect()->back()->with('success', 'Data berhasil dipindahkan ke tabel Ditolak.');
+    
+    }
+
 
     public function formPindahJadwal($id)
     {
@@ -195,24 +230,7 @@ class DataAdmin extends BaseController
         return redirect()->to('ruang_disetujui')->with('success', 'Jadwal berhasil dipindahkan.');
     }
 
-    public function hapus() {
-        $id = $this->request->getPost('id');
 
-        $modelDisetujui = new RuangDisetujui();
-        $modelDitolak = new RuangDitolak();
-    
-        $data = $modelDisetujui->find($id);
-    
-        if ($data) {
-            $modelDitolak->insert($data);
-            $modelDisetujui->delete($id);
-        }
-    
-        return redirect()->back()->with('success', 'Data berhasil dipindahkan ke tabel Ditolak.');
-    
-    }
-
-    //kendaraan
 
     public function menunggu_kendaraan()
     {
@@ -227,5 +245,38 @@ class DataAdmin extends BaseController
             ];
         return view('admin/kendaraan/persetujuan', $data);
     }
+
+    public function search_disetujui()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $model = new RuangDisetujui();
+
+        $data = [
+            'keyword' => $keyword,
+            'disetujui' => $model->getSearchResults($keyword),
+            'pager' => $model->pager,
+            'page' => (int) ($this->request->getVar('page') ?? 1),
+            'totalPages' => $model->pager->getPageCount(), 
+        ];
+
+        return view('admin/ruang_disetujui', $data);
+    }
+
+    public function search_ditolak()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $model = new RuangDitolak();
+
+        $data = [
+            'keyword' => $keyword,
+            'ditolak' => $model->getSearchResults($keyword),
+            'pager' => $model->pager,
+            'page' => (int) ($this->request->getVar('page') ?? 1),
+            'totalPages' => $model->pager->getPageCount(), 
+        ];
+
+        return view('admin/ruang_ditolak', $data);
+    }
+
 
 }

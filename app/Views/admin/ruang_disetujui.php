@@ -68,20 +68,21 @@
 
     <!-- Main content -->
       <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px; ">
-            <form action="<?= base_url('data_aset/search') ?>" method="get">
+         <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px;">
+            <form action="<?= base_url('ruang_disetujui/search') ?>" method="get">
                 <div class="input-group input-group-lg">
-                    <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-lg btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                    <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here"
+                        value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-lg btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-              </form>
-            </div>
-            </div>
+            </form>
+        </div>
+    </div>
               <!-- /.card-header -->
         <div class="card-body">
         <div class="table-responsive">
@@ -148,59 +149,57 @@
                                 Pindah Jadwal
                             </a>
                             </form>
+                        <!-- FORM dimulai -->
+                          <form action="<?= base_url('/admin/hapus') ?>" method="post">
+                              <?= csrf_field() ?>
+                              <input type="hidden" name="id" value="<?= esc($row['id']) ?>">
 
-                            
-                            
 
-                        <form action="<?= base_url('/admin/hapus') ?>" method="post">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
-                            
-                            <!-- Tombol "Tolak" -->
-                            <button type="button" class="btn btn-danger float-right"
-                                data-toggle="modal"
-                                data-target="#rejectModal<?= esc($row['id']) ?>">Hapus</button>
-                            
-                            <!-- Modal Konfirmasi Penolakan -->
-                            <div class="modal fade" id="rejectModal<?= esc($row['id']) ?>"
-                                tabindex="-1" role="dialog"
-                                aria-labelledby="rejectModalLabel<?= esc($row['id']) ?>"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="rejectModalLabel<?= esc($row['id']) ?>">
-                                                Konfirmasi Penolakan
-                                            </h5>
-                                            <button type="button" class="close"
-                                                data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Input alasan penolakan -->
-                                            <div class="form-group">
-                                                <label for="alasan_penolakan<?= esc($row['id']) ?>">Alasan Penolakan:</label>
-                                                <textarea class="form-control"
-                                                    id="alasan_penolakan<?= esc($row['id']) ?>"
-                                                    name="alasan_penolakan"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Batal</button>
-                                            <!-- Tombol "Tolak" yang sebenarnya -->
-                                            <button type="submit" class="btn btn-danger">Tolak</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                              <!-- Tombol trigger modal -->
+                              <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#rejectModal<?= esc($row['id']) ?>">
+                                  Hapus
+                              </button>
+
+                              <!-- Modal dimasukkan di dalam form -->
+                              <div class="modal fade" id="rejectModal<?= esc($row['id']) ?>" tabindex="-1" role="dialog"
+                                  aria-labelledby="rejectModalLabel<?= esc($row['id']) ?>" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="rejectModalLabel<?= esc($row['id']) ?>">Konfirmasi Pindah ke Ditolak</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                              </button>
+                                          </div>
+
+                                          <div class="modal-body">
+                                              <div class="form-group">
+                                                  <label for="alasan_penolakan<?= esc($row['id']) ?>">Alasan Dihapus:</label>
+                                                  <textarea class="form-control" id="alasan_penolakan<?= esc($row['id']) ?>" name="alasan_penolakan"></textarea>
+                                              </div>
+                                          </div>
+
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                              <!-- Tombol submit dalam form -->
+                                              <button type="submit" class="btn btn-danger">Hapus</button>
+                                          </div>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+
                     </div>
                     </div>
                     </div>
                   <?php endforeach; ?>
-                  <?php endif; ?>
+                  <?php else : ?>
+                        <tr>
+                            <td colspan="7" class="text-center">Data tidak ditemukan.</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
           </table> 
           <div class="row">

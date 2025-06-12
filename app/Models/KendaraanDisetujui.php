@@ -15,4 +15,20 @@ class KendaraanDisetujui extends Model
         $builder = $this;
         return $builder->orderBy('tanggal_pinjam', 'DESC')->paginate($perPage);
     }
+
+        public function getSearchResults($keyword = null)
+    {
+        $builder = $this;
+
+        if (!empty($keyword)) {
+            $builder = $builder->groupStart()
+                ->like('nama', $keyword)
+                ->orLike('kendaraan', $keyword)
+                ->orLike('no_hp', $keyword)
+                ->orLike('tanggal', $keyword)
+                ->groupEnd();
+        }
+
+        return $builder->orderBy('tanggal', 'DESC')->paginate(5);
+    }
 }

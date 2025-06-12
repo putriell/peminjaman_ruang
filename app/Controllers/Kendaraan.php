@@ -167,4 +167,37 @@ class Kendaraan extends BaseController
                 return redirect()->back()->with('error', 'Data tidak ditemukan.');
             }
     }
+
+    public function hapus() {
+        $id = $this->request->getPost('id');
+        $alasan = $this->request->getPost('alasan_penolakan');
+        $kendaraanDisetujui = new KendaraanDisetujui();
+        $kendaraanDitolak = new KendaraanDitolak();
+    
+        $data = $kendaraanDisetujui->find($id);
+    
+        if ($data) {
+            $kendaraanDitolak->insert([
+                'id' => $data['id'],
+                'id_user' => $data['id_user'],
+                'nama' => $data['nama'],
+                'no_hp' => $data['no_hp'],
+                'kendaraan' => $data['kendaraan'],
+                'tanggal_pinjam' => $data['tanggal_pinjam'],
+                'tanggal_kembali' => $data['tanggal_kembali'],
+                'jam_pinjam' => $data['jam_pinjam'],
+                'jam_kembali' => $data['jam_kembali'],
+                'status' => $data['status'],
+                'unit_kerja' => $data['unit_kerja'],
+                'nama_pic' => $data['nama_pic'],
+                'keperluan' => $data['keperluan'],
+                'lampiran' => $data['lampiran'],
+                'alasan_penolakan' => $alasan,
+            ]);
+            $kendaraanDisetujui->delete($id);
+        }
+    
+        return redirect()->back()->with('success', 'Data berhasil dipindahkan ke tabel Ditolak.');
+    
+    }
 }

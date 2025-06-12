@@ -15,7 +15,21 @@ class RuangDisetujui extends Model
         $builder = $this;
         return $builder->orderBy('tanggal', 'DESC')->paginate($perPage);
     }
+    public function getSearchResults($keyword = null)
+    {
+        $builder = $this;
 
+        if (!empty($keyword)) {
+            $builder = $builder->groupStart()
+                ->like('nama', $keyword)
+                ->orLike('email', $keyword)
+                ->orLike('ruang', $keyword)
+                ->orLike('tanggal', $keyword)
+                ->groupEnd();
+        }
+
+        return $builder->orderBy('tanggal', 'DESC')->paginate(5);
+    }
     
     
 }

@@ -139,25 +139,11 @@
                           <p>Keperluan: <?= esc($row['keperluan']) ?></p>
                          <p> Lampiran: <?= esc($row['lampiran']) ?></p>
                           
-                          <div class="d-flex justify-content-between align-items-center">
-                          
-                          <form action="<?= base_url('admin/pindah_jadwal') ?>" method="post">
+                        <div class="d-flex justify-content-between align-items-center">
+                        <form action="<?= base_url('/kendaraan/hapus') ?>" method="post">
                             <?= csrf_field() ?>
-                            <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
-                            
-                            
-                            <a href="<?= base_url('admin/form_pindah_jadwal/' . esc($row['id'])) ?>" class="btn btn-success">
-                                Pindah Jadwal
-                            </a>
-                            </form>
+                            <input type="hidden" name="id" value="<?= esc($row['id']) ?>">
 
-                            
-                            
-
-                        <form action="<?= base_url('/admin/hapus') ?>" method="post">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
-                            
                             <!-- Tombol "Tolak" -->
                             <button type="button" class="btn btn-danger float-right"
                                 data-toggle="modal"

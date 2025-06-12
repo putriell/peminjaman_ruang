@@ -67,19 +67,20 @@
     <!-- Main content -->
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px; ">
-            <form action="<?= base_url('data_aset/search') ?>" method="get">
+        <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px;">
+            <form action="<?= base_url('ruang_ditolak/search') ?>" method="get">
                 <div class="input-group input-group-lg">
-                    <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-lg btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                    <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here"
+                        value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-lg btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-              </form>
-            </div>
-            </div>
+            </form>
+        </div>
+    </div>
               <!-- /.card-header -->
         <div class="card-body">
         <div class="table-responsive">
@@ -139,7 +140,11 @@
                     </div>
                     </div>
                   <?php endforeach; ?>
-                  <?php endif; ?>
+                  <?php else : ?>
+                        <tr>
+                            <td colspan="7" class="text-center">Data tidak ditemukan.</td>
+                        </tr>
+                    <?php endif; ?>
                   
           </table> 
           <div class="row">
