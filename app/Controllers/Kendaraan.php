@@ -39,6 +39,7 @@ class Kendaraan extends BaseController
         $data = [
             'id_user' => $user['id'],
             'nama' => $user['username'],
+            'email' => $user['email'],
             'no_hp' => $this->request->getPost('no_hp'),
             'tanggal_pinjam' => $this->request->getPost('tanggal_pinjam'),
             'tanggal_kembali' => $this->request->getPost('tanggal_kembali'),
@@ -112,6 +113,7 @@ class Kendaraan extends BaseController
                     'id' => $data['id'],
                     'id_user' => $data['id_user'],
                     'nama' => $data['nama'],
+                    'email' => $data['email'],
                     'no_hp' => $data['no_hp'],
                     'kendaraan' => $data['kendaraan'],
                     'tanggal_pinjam' => $data['tanggal_pinjam'],
@@ -147,6 +149,7 @@ class Kendaraan extends BaseController
                 'id' => $data['id'],
                 'id_user' => $data['id_user'],
                 'nama' => $data['nama'],
+                'email' => $data['email'],
                 'no_hp' => $data['no_hp'],
                 'kendaraan' => $data['kendaraan'],
                 'tanggal_pinjam' => $data['tanggal_pinjam'],
@@ -181,6 +184,7 @@ class Kendaraan extends BaseController
                 'id' => $data['id'],
                 'id_user' => $data['id_user'],
                 'nama' => $data['nama'],
+                'email' => $data['email'],
                 'no_hp' => $data['no_hp'],
                 'kendaraan' => $data['kendaraan'],
                 'tanggal_pinjam' => $data['tanggal_pinjam'],
@@ -200,4 +204,36 @@ class Kendaraan extends BaseController
         return redirect()->back()->with('success', 'Data berhasil dipindahkan ke tabel Ditolak.');
     
     }
+      public function search_disetujui()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $model = new KendaraanDisetujui();
+
+        $data = [
+            'keyword' => $keyword,
+            'disetujui' => $model->getSearchResults($keyword),
+            'pager' => $model->pager,
+            'page' => (int) ($this->request->getVar('page') ?? 1),
+            'totalPages' => $model->pager->getPageCount(), 
+        ];
+
+        return view('admin/kendaraan/disetujui', $data);
+    }
+
+    public function search_ditolak()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $model = new KendaraanDitolak();
+
+        $data = [
+            'keyword' => $keyword,
+            'ditolak' => $model->getSearchResults($keyword),
+            'pager' => $model->pager,
+            'page' => (int) ($this->request->getVar('page') ?? 1),
+            'totalPages' => $model->pager->getPageCount(), 
+        ];
+
+        return view('admin/kendaraan/ditolak', $data);
+    }
+    
 }

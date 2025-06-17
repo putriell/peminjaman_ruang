@@ -53,3 +53,5 @@ $routes->post('/kendaraan/approve', 'Kendaraan::approve_kendaraan');
 $routes->post('/kendaraan/hapus', 'Kendaraan::hapus');
 $routes->get('ruang_disetujui/search', 'DataAdmin::search_disetujui');
 $routes->get('ruang_ditolak/search', 'DataAdmin::search_ditolak');
+$routes->get('kendaraan_disetujui/search', 'Kendaraan::search_disetujui');
+$routes->get('kendaraan_ditolak/search', 'Kendaraan::search_ditolak');

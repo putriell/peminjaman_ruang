@@ -62,6 +62,7 @@
                   <tr>
                     <th>No.</th>
                     <th>Nama</th>
+                    <th>Email</th>
                     <th>Kendaraan</th>
                     <th>Tanggal</th>
                     <th>Waktu</th>
@@ -76,6 +77,7 @@
                   <tr>
                     <td><?= $no++ ?></td>
                     <td><?= esc($row['nama']) ?></td>
+                     <td><?= esc($row['email']) ?></td>
                     <td><?= esc($row['kendaraan']) ?></td>
                     <td><?= esc($row['tanggal_pinjam']) ?> - <?= esc($row['tanggal_kembali']) ?> </td>
                     <td><?= esc($row['jam_pinjam']) ?> - <?= esc($row['jam_kembali']) ?> WIB </td>
@@ -99,6 +101,7 @@
                         <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
                           <p>Nama: <?= esc($row['nama']) ?></p>
+                          <p>Email: <?= esc($row['email']) ?></p>
                           <p>Unit Kerja: <?= esc($row['unit_kerja']) ?></p>
                           <p>Nama PIC: <?= esc($row['nama_pic']) ?></p>
                           <p>NO.HP: <?= esc($row['no_hp']) ?></p>

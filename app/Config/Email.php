@@ -7,7 +7,7 @@ use CodeIgniter\Config\BaseConfig;
 class Email extends BaseConfig
 {
     public string $fromEmail  = '';
-    public string $fromName   = '';
+    public string $fromName   = 'Peminjaman Ruang dan Kendaraan';
     public string $recipients = '';
 
     /**
@@ -18,7 +18,7 @@ class Email extends BaseConfig
     /**
      * The mail sending protocol: mail, sendmail, smtp
      */
-    public string $protocol = 'mail';
+    public string $protocol = 'stmp';
 
     /**
      * The server path to Sendmail.
@@ -28,7 +28,7 @@ class Email extends BaseConfig
     /**
      * SMTP Server Hostname
      */
-    public string $SMTPHost = '';
+    public string $SMTPHost = 'smtp.gmail.com';
 
     /**
      * SMTP Username
@@ -43,7 +43,7 @@ class Email extends BaseConfig
     /**
      * SMTP Port
      */
-    public int $SMTPPort = 25;
+    public int $SMTPPort = 465;
 
     /**
      * SMTP Timeout (in seconds)
@@ -62,7 +62,7 @@ class Email extends BaseConfig
      *             to the server. 'ssl' means implicit SSL. Connection on port
      *             465 should set this to ''.
      */
-    public string $SMTPCrypto = 'tls';
+    public string $SMTPCrypto = 'ssl';
 
     /**
      * Enable word-wrap
@@ -118,4 +118,14 @@ class Email extends BaseConfig
      * Enable notify message from server
      */
     public bool $DSN = false;
+        public function __construct()
+    {
+        parent::__construct();
+
+        // Ambil dari file .env untuk menimpa default
+        $this->fromEmail = env('email.fromEmail', $this->fromEmail);
+        $this->fromName  = env('email.fromName', $this->fromName);
+        $this->SMTPUser  = env('email.SMTPUser', $this->SMTPUser);
+        $this->SMTPPass  = env('email.SMTPPass', $this->SMTPPass);
+    }
 }

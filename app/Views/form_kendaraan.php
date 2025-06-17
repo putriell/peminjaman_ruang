@@ -38,6 +38,10 @@
                             <label for="nama" class="form-label">Nama:</label>
                             <input type="text"  value="<?= session()->get('username') ?>" class="form-control mt-3" readonly class="form-control">
                         </div>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Email:</label>
+                            <input type="text"  value="<?= session()->get('email') ?>" class="form-control mt-3" readonly class="form-control">
+                        </div>
 
                     
                     <?= csrf_field(); ?>    

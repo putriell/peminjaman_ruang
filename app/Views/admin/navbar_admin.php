@@ -99,7 +99,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item">
-            <a href="<?=base_url('dashboard_admin') ?>" class="nav-link <?= (uri_string() =='dashboard_admin' || uri_string() == 'kendaraan_menunggu') ? 'active' : '' ?>">
+            <a href="<?=base_url('dashboard_admin') ?>" class="nav-link <?= (uri_string() =='dashboard_admin' || uri_string() == 'kendaraan_menunggu' ) ? 'active' : '' ?>">
                <i class="nav-icon fas fa-clipboard-list"></i>
               <p>
                 Menunggu Persetujuan
@@ -145,7 +145,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('ruang_disetujui') ?>" class="nav-link <?= (uri_string() =='ruang_disetujui' || uri_string() == 'kendaraan_disetujui' || uri_string() == 'admin/form_pindah_jadwal/(:num)') ? 'active' : '' ?>">
+            <a href="<?=base_url('ruang_disetujui') ?>" class="nav-link <?= (uri_string() =='ruang_disetujui' || uri_string() == 'kendaraan_disetujui' || uri_string() == 'admin/form_pindah_jadwal/(:num)' || uri_string() == 'kendaraan_disetujui/search' ) ? 'active' : '' ?>">
               <i class="nav-icon fas fa-user-check"></i>
               <p>
                 Disetujui
@@ -155,13 +155,13 @@
             <!-- /kendaraan_ditolak -->
              <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url('ruang_disetujui') ?>" class="nav-link <?= (uri_string() =='ruang_disetujui' ) ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('ruang_disetujui') ?>" class="nav-link <?= (uri_string() =='ruang_disetujui' || uri_string() == 'ruang_disetujui/search' ) ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ruang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url('kendaraan_disetujui') ?>" class="nav-link <?= (uri_string() =='kendaraan_disetujui') ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('kendaraan_disetujui') ?>" class="nav-link <?= (uri_string() =='kendaraan_disetujui' || uri_string() == 'kendaraan_disetujui/search' ) ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kendaraan</p>
                 </a>
@@ -169,7 +169,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('ruang_ditolak') ?>" class="nav-link <?= (uri_string() =='ruang_ditolak' || uri_string() == 'kendaraan_ditolak') ? 'active' : '' ?>">
+            <a href="<?=base_url('ruang_ditolak') ?>" class="nav-link <?= (uri_string() =='ruang_ditolak' || uri_string() == 'kendaraan_ditolak' || uri_string() == 'kendaraan_ditolak/search' || uri_string() == 'ruang_ditolak/search' ) ? 'active' : '' ?>">
               <i class="nav-icon fas fa-times"></i>
               <p>
                 Ditolak
@@ -178,13 +178,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url('ruang_ditolak') ?>" class="nav-link <?= (uri_string() =='ruang_ditolak') ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('ruang_ditolak') ?>" class="nav-link <?= (uri_string() =='ruang_ditolak' || uri_string() == 'ruang_ditolak/search' ) ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ruang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url('kendaraan_ditolak') ?>" class="nav-link <?= (uri_string() =='kendaraan_ditolak') ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('kendaraan_ditolak') ?>" class="nav-link <?= (uri_string() =='kendaraan_ditolak' || uri_string() == 'kendaraan_ditolak/search' ) ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kendaraan</p>
                 </a>

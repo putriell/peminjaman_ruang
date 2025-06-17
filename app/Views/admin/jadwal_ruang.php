@@ -19,7 +19,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <p> Daftar Pengajuan Menunggu Untuk Disetujui </p>
+            <p> Daftar Peminjaman Hari Ini </p>
           </div>
         </div>
       </div>
@@ -29,8 +29,6 @@
         <ul class="nav nav-pills">
           <li class="nav-item"><a class="nav-link active" href="#peminjaman" data-toggle="tab">Jadwal peminjaman</a></li>
           <li class="nav-item"><a class="nav-link" href="#kuliah" data-toggle="tab">Jadwal Kuliah</a></li>
-          <li class="nav-item"><a class="nav-link" href="#dipesan" data-toggle="tab">Ruangan Dipesan</a></li>
-          <li class="nav-item"><a class="nav-link" href="#event" data-toggle="tab">Jadwal Event</a></li>
         </ul>
         </div>
         <div class="card-body">
@@ -87,74 +85,12 @@
                         <?php endforeach; ?>
                   </tbody>
                 </table> 
-                    
                </div> 
-               <div class="tab-pane" id="dipesan">
-              <p>Ruangan yang Dipesan</p>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead class="text-center">
-                    <tr>
-                      <th>No.</th>
-                      <th>Nama</th>
-                      <th>No. Identitas</th>
-                      <th>Ruangan</th>
-                      <th>Tanggal</th>
-                      <th>Jam</th>  
-                      <th>Aksi</th>  
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <?php $no = 1 ?>
-                      <?php foreach ($ruangan_dipesan as $rd): ?>
-                            <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= esc($rd['nama']) ?></td>
-                                <td><?= esc($rd['nim']) ?></td>
-                                <td><?= esc($rd['ruang']) ?></td>
-                                <td><?= esc($rd['tanggal']) ?></td>
-                                <td><?= $rd['waktu_mulai'] ?> - <?= $rd['waktu_selesai'] ?></td>
-                                <td>
-                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?= $rd['id'] ?>"> Detail</button>
-                                </td>
-                              </tr>
-                        <?php endforeach; ?>
-                  </tbody>
-                </table>        
-               </div> 
-               <div class="tab-pane" id="event">
-              <p>Jadwal Event</p>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead class="text-center">
-                    <tr>
-                      <th>No.</th>
-                      <th>Nama ruang</th>
-                      <th>Tanggal</th>
-                      <th>Waktu</th>
-                      <th>Lampiran</th>
-                      <th>Detail</th>  
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th>1</th>
-                      <th>Nama Aset</th>
-                      <th>Kode Aset</th>
-                      <th>Jenis Aset</th>
-                      <th>Unit</th>
-                      <th>Kondisi</th>   
-                    </tr>
-                </table>        
-               </div> 
-            </div>
-
-                    
+            </div> 
                 </div>
                 </div>
                 </div>
         </div>
-        </div>
-        </div>
-    
 <script src="<?= base_url('adminLTE/plugins/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= base_url('adminLTE/dist/js/adminlte.min.js') ?>"></script>

@@ -83,8 +83,6 @@ class DataAdmin extends BaseController
             'ruangan_dipesan'   => $this->ruangDisetujui->where('tanggal >=', date('Y-m-d'))->orderBy('tanggal', 'ASC')->findAll(),
             'username'          => session()->get('username')
         ];
-
-        // dd($jadwalPeminjaman); 
         return view('admin/jadwal_ruang', $data);
     }
     public function approve(){

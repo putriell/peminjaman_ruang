@@ -8,7 +8,7 @@ class KendaraanDisetujui extends Model
 {
     protected $table = 'disetujui_kendaraan';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id','id_user','nama', 'no_hp', 'tanggal_pinjam', 'tanggal_kembali', 'kendaraan', 'jam_pinjam', 'jam_kembali','unit_kerja', 'nama_pic', 'keperluan', 'lampiran', 'status_peminjaman'];
+    protected $allowedFields = ['id','id_user','nama', 'email', 'no_hp', 'tanggal_pinjam', 'tanggal_kembali', 'kendaraan', 'jam_pinjam', 'jam_kembali','unit_kerja', 'nama_pic', 'keperluan', 'lampiran', 'status_peminjaman'];
 
     public function getPaginatedData($perPage = 5)
     {
@@ -16,7 +16,7 @@ class KendaraanDisetujui extends Model
         return $builder->orderBy('tanggal_pinjam', 'DESC')->paginate($perPage);
     }
 
-        public function getSearchResults($keyword = null)
+    public function getSearchResults($keyword = null)
     {
         $builder = $this;
 
@@ -25,10 +25,10 @@ class KendaraanDisetujui extends Model
                 ->like('nama', $keyword)
                 ->orLike('kendaraan', $keyword)
                 ->orLike('no_hp', $keyword)
-                ->orLike('tanggal', $keyword)
+                ->orLike('tanggal_pinjam', $keyword)
                 ->groupEnd();
         }
 
-        return $builder->orderBy('tanggal', 'DESC')->paginate(5);
+        return $builder->orderBy('tanggal_pinjam', 'DESC')->paginate(5);
     }
 }
