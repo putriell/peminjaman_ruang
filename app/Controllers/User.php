@@ -26,13 +26,15 @@ class User extends BaseController
     }
     public function simpan() {
         $model = new UserModel();
+        $nim = $this->request->getPost('NIM');
         $data = [
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
-            'NIM' => $this->request->getPost('NIM'),
             'role' => $this->request->getPost('role'),
-            'password' => $this->request->getPost('password'),
+            'NIM' => $nim ? $nim : null,
+            'password' => password_hash('admin123', PASSWORD_DEFAULT), 
             ];
+            // dd($data);
         $model->insert($data);
         return redirect() -> to ('user') -> with('success', 'Data berhasil ditambahkan');
     }
@@ -115,6 +117,23 @@ class User extends BaseController
         ];
 
         return view('admin/aktivasi_user', $data);
+    }
+    public function proses_aktivasi()
+    {
+        $userId = $this->request->getPost('user_id');
+
+        if (!$userId) {
+            return redirect()->back()->with('error', 'Aksi gagal, ID user tidak ditemukan.');
+        }
+
+        $dataToUpdate = [
+            'role' => 'user' 
+        ];
+
+        $model = new UserModel();
+        $model->update($userId, $dataToUpdate);
+
+        return redirect()->to('/admin/aktivasi_user')->with('success', 'Akun berhasil diaktivasi!');
     }
 
 

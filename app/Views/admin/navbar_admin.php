@@ -122,7 +122,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('jadwal_ruang_admin') ?>" class="nav-link <?= (uri_string() =='jadwal_ruang_admin' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
+            <a href="<?=base_url('jadwal_ruang_admin') ?>" class="nav-link <?= (uri_string() =='jadwal_ruang_admin' || uri_string() == 'kendaraan/hari_ini') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Jadwal Hari ini
@@ -137,7 +137,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url('kendaraan_menunggu') ?>" class="nav-link <?= (uri_string() =='kendaraan_menunggu') ? 'active' : '' ?>" class="nav-link">
+                <a href="<?=base_url('kendaraan/hari_ini') ?>" class="nav-link <?= (uri_string() =='kendaraan/hari_ini') ? 'active' : '' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kendaraan</p>
                 </a>

@@ -39,7 +39,7 @@ class UserModel extends Model
 
     public function getPaginatedData($perPage = 10, $keyword = null)
     {
-        $builder = $this->whereIn('role', ['admin', 'user']);
+        $builder = $this->whereIn('role', ['admin', 'user', 'akademik']);
 
         if ($keyword) {
             $builder ->groupStart()

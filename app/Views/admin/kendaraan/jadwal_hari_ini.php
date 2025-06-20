@@ -57,7 +57,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <p> Daftar Jadwal Peminjaman Kendaraan Hari ini</p>
+            <p> Daftar Kendaraan Dipinjam Hari ini</p>
           </div>
         </div>
       </div>
@@ -67,18 +67,6 @@
     <!-- Main content -->
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px; ">
-            <form action="<?= base_url('kendaraan_disetujui/search') ?>" method="get">
-                <div class="input-group input-group-lg">
-                    <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-lg btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                </div>
-              </form>
-            </div>
             </div>
               <!-- /.card-header -->
         <div class="card-body">
@@ -90,22 +78,24 @@
                     <th>Nama</th>
                     <th>Kendaraan</th>
                     <th>No HP</th>
-                    <th>Tanggal</th>
+                    <th>Tanggal Pinjam</th>
+                    <th>Tanggal Kembali</th>
                     <th>Waktu</th>
                     <th>Detail</th>  
                   </tr>
                   </thead>
                   <tbody>
                   
-                    <?php if (!empty($ditolak)) : ?>
-                      <?php $no = 1 + (5 * ($page -1));  ?>
-                    <?php foreach ($ditolak as $row) : ?>
+                  <?php if (!empty($jadwal_hari_ini)) : ?>
+                    <?php $no = 1 + (10 * ($page - 1)); ?>
+                    <?php foreach ($jadwal_hari_ini as $row) : ?>
                   <tr>
                     <td><?= $no++ ?></td>
                     <td><?= esc($row['nama']) ?></td>
                     <td><?= esc($row['kendaraan']) ?></td>
                     <td><?= esc($row['no_hp']) ?></td>
-                    <td><?= esc($row['tanggal_pinjam']) ?> - <?= esc($row['tanggal_kembali']) ?></td>
+                    <td><?= esc($row['tanggal_pinjam']) ?> </td>
+                    <td> <?= esc($row['tanggal_kembali']) ?></td>
                     <td><?= esc($row['jam_pinjam']) ?> - <?= esc($row['jam_kembali']) ?> WIB </td>
                     <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?= $row['id'] ?>"> Detail</button>
@@ -142,7 +132,7 @@
                     </div>
                   <?php endforeach; ?>
                   <?php endif; ?>
-          </table>         
+          </table>        
     </div>  
 
 </script>

@@ -90,11 +90,18 @@
                            <td><?= esc($row['NIM']) ?></td>
                            <td><?= esc($row['role']) ?></td>
                            
-                           <td class="text-center" >
-                            <a href="#" data-href="<?= base_url('user/hapus/'.$row['id']) ?>" onclick="confirmToDelete(this)">
-                               <i class="fas fa-pencil-alt pl-3"></i>
-                             </a>
-                           </td>
+                            <td>
+                              <form action="<?= base_url('admin/proses_aktivasi') ?>" method="POST" style="display:inline;">
+                                  
+                                  <?= csrf_field() ?> 
+                                  
+                                  <input type="hidden" name="user_id" value="<?= $row['id'] ?>"> 
+                                  
+                                  <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin ingin mengaktivasi akun <?= esc($row['username']) ?>?')">
+                                      Aktivasi
+                                  </button>
+                              </form>
+                          </td>
      
                          </tr>
                          <?php endforeach; ?>
@@ -133,75 +140,23 @@
      </div>
      
          </div>
-         
-         <div class="modal fade" id="tambah-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-           <div class="modal-dialog" role="document">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <h5 class="modal-title" id="myModalLabel">Tambah Data</h5>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                 </button>
-               </div>
-               <form id="tambah-data" action="<?= base_url('/user/simpan') ?>" method="POST">
-                 <div class="modal-body">
-                   <div class="form-group">
-                     <label for="username">Username</label>
-                     <input type="text" class="form-control" id="username" name="username" placeholder="contoh: multimedia" required>
-                   </div>
-                   <div class="form-group">
-                     <label for="unit">Unit</label>
-                     <input type="text" class="form-control" id="unit" name="unit" placeholder="contoh multimedia" required>
-                   </div>
-                   <button type="submit" class="btn btn-primary">Simpan</button>
-                 </div>
-                 <p>*gunakan huruf kecil</p>
-               </form>
-             </div>
-           </div>
-         </div>
+      
        </div>
      </div>
-     <div id="confirm-dialog" class="modal" tabindex="-1" role="dialog">
-       <div class="modal-dialog" role="document">
-         <div class="modal-content">
-           <div class="modal-body">
-             <h2 class="h2">Are you sure?</h2>
-             <p>The data will be deleted and lost forever</p>
-           </div>
-           <div class="modal-footer">
-             <a href="#" role="button" id="delete-button" class="btn btn-danger">Delete</a>
-             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     <?php if(session()->getFlashdata('message')): ?>
-         <div class="alert alert-success">
-             <?= session()->getFlashdata('message') ?>
-         </div>
-     <?php endif; ?>
+
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('success') ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+    <?php endif; ?>
      
-     
-     <script>
-     function confirmReset(element) {
-         const url = element.getAttribute('data-href');
-         if (confirm('Apakah Anda yakin ingin mereset password menjadi "admin123"?')) {
-             window.location.href = url;
-         }
-     }
-     </script>
-     <script>
-       function confirmToDelete(el){
-         const href = el.getAttribute('data-href');
-           if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-               window.location.href = href;
-           }
-           
-       } 
-     
-     
-     </script>
+
       
 
          <script src="<?= base_url('adminLTE/plugins/jquery/jquery.min.js') ?>"></script>

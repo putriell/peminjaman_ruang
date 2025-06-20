@@ -235,5 +235,19 @@ class Kendaraan extends BaseController
 
         return view('admin/kendaraan/ditolak', $data);
     }
+
+    public function hariIni (){
+        $model = new KendaraanDisetujui();
+        $today = date('Y-m-d');
+        $data = [
+            'jadwal_hari_ini' => $model
+                                ->where('tanggal_kembali >=', $today) 
+                                ->orderBy('tanggal_pinjam', 'ASC')      
+                                ->paginate(10, 'jadwal'),           
+            'pager'           => $model->pager,
+            'page'            => $this->request->getVar('page_jadwal') ? $this->request->getVar('page_jadwal') : 1,
+        ];
+        return view ('/admin/kendaraan/jadwal_hari_ini', $data);
+    }
     
 }

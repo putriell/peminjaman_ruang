@@ -164,19 +164,31 @@
                    <span aria-hidden="true">&times;</span>
                  </button>
                </div>
-               <form id="tambah-data" action="<?= base_url('/user/simpan') ?>" method="POST">
+               <form id="form-tambah-data" action="<?= base_url('/user/simpan') ?>" method="POST">
                  <div class="modal-body">
                    <div class="form-group">
                      <label for="username">Username</label>
-                     <input type="text" class="form-control" id="username" name="username" placeholder="contoh: multimedia" required>
+                     <input type="text" class="form-control" id="username" name="username" placeholder="masukkan nama" required>
                    </div>
                    <div class="form-group">
-                     <label for="unit">Unit</label>
-                     <input type="text" class="form-control" id="unit" name="unit" placeholder="contoh multimedia" required>
+                     <label for="email">email</label>
+                     <input type="text" class="form-control" id="email" name="email" placeholder="masukkan email" required>
                    </div>
+                   <div class="form-group" id="nim-field" style="display: none;">
+                    <label for="NIM">NIM</label>
+                    <input type="text" class="form-control" id="NIM" name="NIM" placeholder="Masukkan NIM">
+                  </div>
+                    <div class="form-group">
+                      <label for="role">Role</label>
+                      <select class="form-control" id="role" name="role" required>
+                        <option value="" disabled selected>Pilih role...</option>
+                        <option value="admin">Admin</option>
+                        <option value="akademik">Akademik</option>
+                        </select>
+                    </div>
+                   
                    <button type="submit" class="btn btn-primary">Simpan</button>
                  </div>
-                 <p>*gunakan huruf kecil</p>
                </form>
              </div>
            </div>
