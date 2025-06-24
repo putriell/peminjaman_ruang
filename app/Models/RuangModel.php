@@ -24,5 +24,8 @@ class RuangModel extends Model
        ->orderBy('ruang', 'ASC')
        ->findAll();
      }
+    public function getRuangKelas(){
+        return $this->where('klasifikasi', 'Ruang Kelas')->findAll();
+    }
 
 }

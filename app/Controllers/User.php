@@ -31,6 +31,7 @@ class User extends BaseController
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
             'role' => $this->request->getPost('role'),
+            'status' => $this->request->getPost('status'),
             'NIM' => $nim ? $nim : null,
             'password' => password_hash('admin123', PASSWORD_DEFAULT), 
             ];
@@ -41,7 +42,7 @@ class User extends BaseController
     public function hapus($id) {
         $model = new UserModel();
         $model->delete($id);
-        return redirect('admin/kelola_user') -> with('success', 'Data berhasil dihapus');
+        return redirect('user') -> with('success', 'Data berhasil dihapus');
     }
 
 
@@ -80,7 +81,7 @@ class User extends BaseController
         $model->update($id, ['password' =>$newPassword]);
 
         session()->setFlashdata('message', 'Password telah direset menjadi admin123.');
-        return redirect()->to('/admin/kelola_user');
+        return redirect()->to('user');
     }
     public function search() {
         $model = new UserModel();
@@ -133,7 +134,7 @@ class User extends BaseController
         $model = new UserModel();
         $model->update($userId, $dataToUpdate);
 
-        return redirect()->to('/admin/aktivasi_user')->with('success', 'Akun berhasil diaktivasi!');
+        return redirect()->to('aktivasi_user')->with('success', 'Akun berhasil diaktivasi!');
     }
 
 

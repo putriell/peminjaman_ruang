@@ -27,7 +27,8 @@ class Auth extends BaseController
             'email'    => $this->request->getPost('email'),
             'NIM'      => $this->request->getPost('NIM'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'role'     => "menunggu" 
+            'role'     => "menunggu", 
+            'status'   => $this->request->getPost('status')
         ]);
 
         return redirect()->to('/login')->with('success', 'Pendaftaran berhasil. Silakan login.');
@@ -72,16 +73,21 @@ class Auth extends BaseController
             }
             session()->set([
                 'id_user' => $user['id'],
-                
                 'username' => $user['username'], 
                 'email' => $user['email'],
                 'NIM' => $user['NIM'],
                 'role' => $user['role'],
+                'status' => $user['status'],
                 'logged_in' => true
             ]);
+            
+
             if ($user['role'] === 'admin' || $user['role'] === 'superAdmin') {
                 return redirect()->to('/dashboard_admin'); 
-            } else {
+            } elseif ($user ['role'] === 'akademik'){
+                return redirect()->to('/jadwal_kuliah/tambah');
+            } 
+            else {
                 return redirect()->to('/'); 
             }
         } 

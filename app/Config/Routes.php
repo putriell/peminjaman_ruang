@@ -57,3 +57,5 @@ $routes->get('ruang_ditolak/search', 'DataAdmin::search_ditolak');
 $routes->get('kendaraan_disetujui/search', 'Kendaraan::search_disetujui');
 $routes->get('kendaraan_ditolak/search', 'Kendaraan::search_ditolak');
 $routes->get('/kendaraan/hari_ini', 'Kendaraan::hariIni');
+$routes->get('/jadwal_kuliah/tambah', 'DataAdmin::tambah_jadwal');
+$routes->post('/jadwal_kuliah/simpan', 'DataAdmin::simpan_jadwal');

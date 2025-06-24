@@ -18,6 +18,7 @@ class DataAdmin extends BaseController
     protected $ruangDitolak;
     protected $jadwalKuliah;
     protected $permintaanKendaraan;
+    protected $ruangModel;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class DataAdmin extends BaseController
         $this->ruangDitolak = new RuangDitolak();
         $this->jadwalKuliah = new JadwalKuliah();
         $this->permintaanKendaraan = new PermintaanKendaraan();
+        $this->ruangModel = new RuangModel();
     }
     //ruang
     public function index()
@@ -228,8 +230,6 @@ class DataAdmin extends BaseController
         return redirect()->to('ruang_disetujui')->with('success', 'Jadwal berhasil dipindahkan.');
     }
 
-
-
     public function menunggu_kendaraan()
     {
         $model = new PermintaanKendaraan();
@@ -275,6 +275,44 @@ class DataAdmin extends BaseController
 
         return view('admin/ruang_ditolak', $data);
     }
+    public function tambah_jadwal(){
+        $data = [
+            'ruang_list' => $this->ruangModel->getRuangKelas()
+        ];
+        return view('admin/akademik', $data);
+    }
+   public function simpan_jadwal()
+{
+    $postData = $this->request->getPost();
+    $ruangId = $postData['ruang'];
+    $ruangData = $this->ruangModel->find($ruangId);
+    $namaRuang = $ruangData ? $ruangData['nama_ruang'] : 'Ruang Tidak Ditemukan';
+    $tanggalMulai = new \DateTime($postData['tanggal_mulai']);
+    $tanggalSelesai = new \DateTime($postData['tanggal_selesai']);
+    
+    $interval = new \DateInterval('P1W'); 
+    $currentDate = $tanggalMulai;
 
+    while ($currentDate <= $tanggalSelesai) {
+        $dataToInsert = [
+            'matkul'        => $postData['matkul'],
+            'nama'          => $postData['nama'], 
+            
+            'ruang'         => $namaRuang, 
+            'tanggal'       => $currentDate->format('Y-m-d'),
+            'waktu_mulai'   => $postData['waktu_mulai'],
+            'waktu_selesai' => $postData['waktu_selesai'],
+            'jurusan'       => $postData['jurusan'],
+            'code'          => $postData['code']
+        ];
 
+        
+        $this->jadwalKuliah->insert($dataToInsert);
+
+        $currentDate->add($interval);
+    }
+
+    session()->setFlashdata('pesan', 'Jadwal kuliah berhasil ditambahkan untuk periode yang dipilih.');
+    return redirect()->to(base_url('jadwal_kuliah/tambah'));
+}
 }

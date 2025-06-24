@@ -16,7 +16,9 @@
 
     <?php include 'navbar.php'; ?>
 
-
+<?php
+    $status_user = isset($_SESSION['status']) ? $_SESSION['status'] : '';
+    ?>
     <!-- ISI KONTEN -->
     <section class="container-fluid custom-bg" style="background-image: url('<?= base_url('adminLTE/dist/img/ugm/bg-new.jpg') ?>'); background-size: cover; background-position: center;">
 
@@ -43,9 +45,16 @@
                     <div class="modal-body">
                         <h5>Silakan pilih pengajuan yang ingin dilakukan:</h5>
                         <div class="d-grid gap-2">
-                            <a href="form-peminjaman-ruang.php" class="btn btn-primary">Peminjaman Ruang</a>
-                            <a href="form-peminjaman-kendaraan.php" class="btn btn-secondary disabled">Peminjaman
-                                Kendaraan</a>
+                            <a href="form_peminjaman_ruang" class="btn btn-primary">Peminjaman Ruang</a>
+                             <?php if ($status_user == 'tendik') : ?>
+                                <a href="form_kendaraan" class="btn btn-primary " role="button">
+                                    Peminjaman Kendaraan
+                                </a>
+                            <?php else : ?>
+                                <a href="form_kendaraan" class="btn btn-secondary disabled" aria-disabled="true">
+                                    Peminjaman Kendaraan
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="modal-footer">

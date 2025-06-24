@@ -9,7 +9,7 @@ class UserModel extends Model
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $returnType = 'array';
-    protected $allowedFields = ['id','username', 'email', 'password', 'NIM', 'role'];
+    protected $allowedFields = ['id','username', 'email', 'password', 'NIM', 'role', 'status'];
    
 
     public function getUser($username){
@@ -31,6 +31,7 @@ class UserModel extends Model
                     ->orLike('email', $keyword)
                     ->orLike('NIM', $keyword)
                     ->orLike('role', $keyword)
+                    ->orLike('status', $keyword)
                     ->groupEnd();
         }
         
@@ -47,6 +48,7 @@ class UserModel extends Model
                      ->orLike('email', $keyword)
                      ->orLike('NIM', $keyword)
                      ->orLike('role', $keyword)
+                     ->orLike('status', $keyword)
                      ->groupEnd();
         }
 

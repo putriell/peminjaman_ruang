@@ -79,6 +79,13 @@
             </div>
           </div>
         </div>
+        <div class="input-group mb-3">
+            <select class="form-control" name="status" id="status" required>
+                <option value="">- Pilih Status -</option>
+                <option value="mahasiswa">Mahasiswa</option>
+                <option value="tendik">Tendik</option>
+            </select>
+        </div>
 
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>

@@ -88,18 +88,17 @@
                            <td><?= esc($row['username']) ?></td>
                            <td><?= esc($row['email']) ?></td>
                            <td><?= esc($row['NIM']) ?></td>
-                           <td><?= esc($row['role']) ?></td>
-                           
+                           <td><?= esc($row['status']) ?></td>
                             <td>
                               <form action="<?= base_url('admin/proses_aktivasi') ?>" method="POST" style="display:inline;">
-                                  
                                   <?= csrf_field() ?> 
-                                  
                                   <input type="hidden" name="user_id" value="<?= $row['id'] ?>"> 
-                                  
-                                  <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin ingin mengaktivasi akun <?= esc($row['username']) ?>?')">
+                                  <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary btn-sm"
+                                      onclick="return confirm('Anda yakin ingin mengaktivasi akun <?= esc($row['username']) ?>?')">
                                       Aktivasi
-                                  </button>
+                                    </button>
+                                  </div>
                               </form>
                           </td>
      
