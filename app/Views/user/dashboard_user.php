@@ -58,7 +58,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <p> Daftar Pengajuan Ruang </p>
+            <p> Riwayat Pengajuan Pengajuan </p>
           </div>
         </div>
       </div>
@@ -68,11 +68,11 @@
     <!-- Main content -->
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-
-              <!-- /.card-header -->
         <div class="card-body">
-          <table id="example1" class="table table-bordered table-striped">
-            <thead class="text-center">
+        <div class="table-responsive">
+              <p>Peminjaman Ruang</p>
+                <table id="example1" class="table table-bordered table-striped">
+                <thead class="text-center">
                   <tr>
                     <th>No.</th>
                     <th>Ruang</th>
@@ -122,72 +122,28 @@
                           <p>Waktu: <?= esc($row['waktu_mulai']) ?> - <?= esc($row['waktu_selesai']) ?> WIB</p>
                           <p>Fasilitas: <?= esc($row['fasilitas']) ?></p>
                           <p>Keperluan: <?= esc($row['keperluan']) ?></p>
-                          <div class="d-flex justify-content-between align-items-center">
-                          <form action="<?= base_url('/admin/approve') ?>" method="post">
-                          <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
-                            <button type="submit" class="btn btn-success">Setujui</button>
-                          </form>
-                          <form action="<?= base_url('/admin/reject') ?>" method="post">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="id[]" value="<?= esc($row['id']) ?>">
-                            
-                            <!-- Tombol "Tolak" -->
-                            <button type="button" class="btn btn-danger float-right"
-                                data-toggle="modal"
-                                data-target="#rejectModal<?= esc($row['id']) ?>">Tolak</button>
-                            
-                            <!-- Modal Konfirmasi Penolakan -->
-                            <div class="modal fade" id="rejectModal<?= esc($row['id']) ?>"
-                                tabindex="-1" role="dialog"
-                                aria-labelledby="rejectModalLabel<?= esc($row['id']) ?>"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="rejectModalLabel<?= esc($row['id']) ?>">
-                                                Konfirmasi Penolakan
-                                            </h5>
-                                            <button type="button" class="close"
-                                                data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Input alasan penolakan -->
-                                            <div class="form-group">
-                                                <label for="alasan_penolakan<?= esc($row['id']) ?>">Alasan Penolakan:</label>
-                                                <textarea class="form-control"
-                                                    id="alasan_penolakan<?= esc($row['id']) ?>"
-                                                    name="alasan_penolakan"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Batal</button>
-                                            <!-- Tombol "Tolak" yang sebenarnya -->
-                                            <button type="submit" class="btn btn-danger">Tolak</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                          
+                        </div>
+                        </div>
+                        
                         </div>
                         </div>
                       </div>
-                     </div>
-                    </div>
                   <?php endforeach; ?>
                   <?php endif; ?>
                 </tbody>
-          </table>           
-    </div>  
-    </div>
-    <div class="card-footer">
+          </table>      
+    
+      </div> 
+      </div>
+      </div>
+      
+       <div class="card-footer">
     <div class="row">
               <div class="col-12">
                   <nav aria-label="Page navigation">
                   <?php 
-                      $perPageLinks = 3; 
+                      $perPageLinks = 3; // Menampilkan 3 angka per tampilan pagination
                       $startPage = (ceil($page / $perPageLinks) - 1) * $perPageLinks + 1;
                       $endPage = min($startPage + $perPageLinks - 1, $totalPages);
                       ?>
@@ -198,13 +154,14 @@
                           </li>
                       <?php endif; ?>
 
-
+                      <!-- Menampilkan halaman dalam kelompok 3 -->
                       <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
                           <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
                               <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                           </li>
                       <?php endfor; ?>
 
+                      <!-- Tombol Next -->
                       <?php if ($page < $totalPages): ?>
                           <li class="page-item">
                               <a class="page-link" href="?page=<?= $page + 1 ?>">Next »</a>

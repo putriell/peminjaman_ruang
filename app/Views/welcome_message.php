@@ -27,9 +27,14 @@
                 <h1>Website Peminjaman Ruang dan Kendaraan</h1>
                 <p>Pastikan Anda Membaca Prosedur Peminjaman Terlebih dahulu!</p>
                 <div class="d-grid">
-                    <!-- Tombol AJUKAN -->
-                    <a href="#" class="btn custom-btn" type="button" data-bs-toggle="modal"
+                     <?php if (!session()->get('logged_in')): ?> 
+                    <a href="#" class="btn custom-btn disabled" type="button" data-bs-toggle="modal"
+                        data-bs-target="">AJUKAN</a>
+                    <?php else : ?>
+                       <a href="#" class="btn custom-btn" type="button" data-bs-toggle="modal"
                         data-bs-target="#ajukanModal">AJUKAN</a>
+                    <?php endif; ?>
+                    
                 </div>
             </div>
         </div>

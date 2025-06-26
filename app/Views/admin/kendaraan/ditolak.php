@@ -68,7 +68,7 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
         <div class="form-group mx-auto" style="max-width:500px; padding-top: 20px; ">
-            <form action="<?= base_url('kendaraan_disetujui/search') ?>" method="get">
+            <form action="<?= base_url('kendaraan_ditolak/search') ?>" method="get">
                 <div class="input-group input-group-lg">
                     <input type="search" name="keyword" class="form-control form-control-lg" placeholder="Type your keywords here" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
                         <div class="input-group-append">

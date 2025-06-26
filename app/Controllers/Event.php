@@ -9,6 +9,13 @@ use App\Models\UserModel;
 
 class Event extends BaseController
 {
+    protected $eventModel;
+
+    public function __construct()
+    {
+        $this->eventModel = new EventModel();
+    }
+
     public function index()
     {
         $model = new EventModel();
@@ -87,5 +94,68 @@ class Event extends BaseController
                return $this->response->setJSON(['klasifikasi' => '']);
            }
        }
+        public function edit($id = null)
+    {
+        
+        if ($id === null) {
+            return redirect()->to(base_url('event'))->with('error', 'ID event tidak ditemukan.');
+        }
+
+        $event = $this->eventModel->find($id);
+        if (!$event) {
+            return redirect()->to(base_url('event'))->with('error', 'Data event tidak ditemukan.');
+        }
+
+        if ($this->request->getMethod() === 'post') {
+            $rules = [
+                'nama' => 'required|min_length[3]',
+                'ruang' => 'required',
+                'email' => 'required|valid_email',
+                'tanggal' => 'required|valid_date',
+                'waktu_mulai' => 'required',
+                'waktu_selesai' => 'required|after_or_equal[waktu_mulai]',
+            ];
+
+            if ($this->validate($rules)) {
+                $data = [
+                    'nama'          => $this->request->getPost('nama'),
+                    'ruang'         => $this->request->getPost('ruang'),
+                    'email'         => $this->request->getPost('email'),
+                    'tanggal'       => $this->request->getPost('tanggal'),
+                    'waktu_mulai'   => $this->request->getPost('waktu_mulai'),
+                    'waktu_selesai' => $this->request->getPost('waktu_selesai'),
+                ];
+
+                if ($this->eventModel->update($id, $data)) {
+                    return redirect()->to(base_url('event'))->with('success', 'Data event berhasil diperbarui.');
+                } else {
+                    return redirect()->back()->withInput()->with('error', 'Gagal memperbarui data event.');
+                }
+            } else {
+                return redirect()->back()->withInput()->with('validation', $this->validator);
+            }
+        }
+
+        $data['event'] = $event;
+        return view('admin/form_edit_event', $data); 
+    }
+
+    // --- FUNGSI HAPUS ---
+
+    public function hapus($id = null)
+    {
+        // Pastikan ID tidak kosong
+        if ($id === null) {
+            return redirect()->to(base_url('event'))->with('error', 'ID event tidak ditemukan.');
+        }
+
+        // Lakukan penghapusan data
+        if ($this->eventModel->delete($id)) {
+            return redirect()->to(base_url('event'))->with('success', 'Data event berhasil dihapus.');
+        } else {
+            return redirect()->to(base_url('event'))->with('error', 'Gagal menghapus data event.');
+        }
+    }
+
     
 }

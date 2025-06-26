@@ -109,12 +109,9 @@
                       <td><?= esc($row['tanggal']) ?></td>
                       <td><?= esc($row['waktu_mulai']) ?> - <?= esc($row['waktu_selesai']) ?></td>
                       <td class="text-center" >
-                      
-                        <a href="<?=base_url('data_aset/edit/'.$row['id']) ?>" class="edit-data" >
-                         <i class="fas fa-edit"></i></a>
-                       <a href="#" data-href="<?= base_url('data_aset/hapus/'.$row['id']) ?>" onclick="confirmToDelete(this)">
+                       <a href="#" data-href="<?= base_url('event/hapus/'.$row['id']) ?>" onclick="confirmToDelete(this)" title="Hapus Data">
                           <i class="fas fa-trash-alt pl-3"></i>
-                        </a> 
+                      </a>
                       </td>
                       
 
@@ -129,7 +126,6 @@
           </table>  
                   
     </div>  
-
     <div class="row">
               <div class="col-12">
                   <nav aria-label="Page navigation">
@@ -163,10 +159,6 @@
                   </nav>
               </div>
           </div>
-
-
-
-
     </div>
     
     <div class="modal fade" id="tambah-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -301,6 +293,10 @@
     <script src="<?= base_url('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
     <script src="<?= base_url('adminLTE/dist/js/adminlte.js') ?>"></script>
-
-</body>
+    <script> function confirmToDelete(el) {
+        if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+            window.location.href = el.dataset.href;
+        }
+    }</script>
+  </body>
 </html>

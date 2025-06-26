@@ -77,6 +77,7 @@
                   <i class="far fa-user fa-inverse" style="color:white;"></i> 
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                   <a class="dropdown-item" href="<?= base_url('/') ?>">Beranda</a>
                     <a class="dropdown-item"  data-toggle="modal" data-target="#ganti_password">Ganti Password</a>
                     <a class="dropdown-item" href="logout">Logout</a>
                 </div>
@@ -89,18 +90,41 @@
       <img src="<?= base_url('adminLTE/dist/img/ugm/logo.png') ?>" alt="Logo" class="img-fluid logo" style="opacity: .8">
     </div>
   <div class="sidebar">
-
+<?php if (session()->get('logged_in')): ?>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
           <li class="nav-item">
-            <a href="<?=base_url('dashboard_user') ?>" class="nav-link <?= (uri_string() =='dashboard_user' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
+             <a href="<?=base_url('dashboard_user') ?>" class="nav-link <?= (uri_string() =='dashboard_user' || uri_string() == 'data_aset/search' || uri_string() == 'riwayat_kendaraan') ? 'active' : '' ?>">
                <i class="nav-icon fas fa-clipboard-list"></i>
               <p>
                 Dashboard User
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('dashboard_user') ?>" class="nav-link <?= (uri_string() =='dashboard_user' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ruang</p>
+                </a>
+              </li>
+              <?php 
+              if (session()->get('status') == 'tendik') { 
+              ?>
+                  <li class="nav-item">
+                <a href="<?=base_url('riwayat_kendaraan') ?>" class="nav-link <?= (uri_string() =='riwayat_kendaraan') ? 'active' : '' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kendaraan</p>
+                </a>
+              </li>
+              <?php 
+              } 
+              ?>
+              
+            </ul>
           </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a href="<?=base_url('jadwal_ruang_user') ?>" class="nav-link <?= (uri_string() =='jadwal_ruang_user' || uri_string() == 'data_aset/search') ? 'active' : '' ?>">
               <i class="nav-icon fas fa-calendar"></i>

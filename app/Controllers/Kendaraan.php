@@ -46,7 +46,6 @@ class Kendaraan extends BaseController
             'kendaraan' => $this->request->getPost('kendaraan'),
             'jam_pinjam' => $this->request->getPost('jam_pinjam'),
             'jam_kembali' => $this->request->getPost('jam_kembali'),
-            'status' => $this->request->getPost('status'),
             'unit_kerja' => $this->request->getPost('unit_kerja'),
             'nama_pic' => $this->request->getPost('nama_pic'),
             'keperluan' => $this->request->getPost('keperluan'),
@@ -120,7 +119,7 @@ class Kendaraan extends BaseController
                     'tanggal_kembali' => $data['tanggal_kembali'],
                     'jam_pinjam' => $data['jam_pinjam'],
                     'jam_kembali' => $data['jam_kembali'],
-                    'status' => $data['status'],
+                    
                     'unit_kerja' => $data['unit_kerja'],
                     'nama_pic' => $data['nama_pic'],
                     'keperluan' => $data['keperluan'],
@@ -156,7 +155,7 @@ class Kendaraan extends BaseController
                 'tanggal_kembali' => $data['tanggal_kembali'],
                 'jam_pinjam' => $data['jam_pinjam'],
                 'jam_kembali' => $data['jam_kembali'],
-                'status' => $data['status'],
+                
                 'unit_kerja' => $data['unit_kerja'],
                 'nama_pic' => $data['nama_pic'],
                 'keperluan' => $data['keperluan'],
